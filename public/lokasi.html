@@ -28,7 +28,8 @@
                 <a href="index.html" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
                 <a href="menu.html" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.html" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                    
+                <a href="lokasi.html" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a> 
+                <a href="ulasan.html" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>                   
             </div>
             <!-- Right-aligned Login Button -->
             <a href="login.html"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
@@ -148,6 +149,7 @@
     <script>
         // Get the current URL
         const currentUrl = window.location.pathname;
+        
         // Find the link corresponding to the current page and add the 'active-link' class
         if (currentUrl.includes('index.html')) {
             document.getElementById('home').classList.add('active-link');
@@ -157,6 +159,8 @@
             document.getElementById('menu').classList.add('active-link');
         } else if (currentUrl.includes('lokasi.html')) {
             document.getElementById('lokasi').classList.add('active-link');
+        } else if (currentUrl.includes('ulasan.html')) {
+            document.getElementById('ulasan').classList.add('active-link');
         }
     </script>
 </body>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokasi BONBON - Es Krim, Teh, dan Kopi</title>
+    <link rel="icon" href="images/logo-bonbon.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .active-link {
+            outline: 3px solid #d3293b; /* Outline warna merah */
+            outline-offset: 6px;
+            border-radius: 40%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="flex justify-between items-center p-4">
+            <!-- Centered Navbar Items -->
+            <div class="flex-1 flex justify-center space-x-12">
+                <a href="dashboard.html" id="dashboard" class="text-red-600 font-bold hover:text-red-800">Dashboard</a>
+                <a href="edit_promo.html" id="edit_promo" class="text-red-600 font-bold hover:text-red-800">Edit Promosi</a>
+                <a href="edit_menu.html" id="edit_menu" class="text-red-600 font-bold hover:text-red-800">Edit Menu</a>
+                <a href="edit_lokasi.html" id="edit_lokasi" class="text-red-600 font-bold hover:text-red-800">Edit Lokasi</a>
+            </div>
+            <!-- Right-aligned Login Button -->
+            <a href="index.html" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Keluar</a>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="p-0 w-full">
+
+        <!-- Banner Image -->
+        <header class="relative w-full overflow-hidden bg-red-600">
+            <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto">
+        </header>
+
+        <!-- Lokasi Section -->
+        <section class="px-4 text-center items-center justify-center text-white bg-red-600">
+            <h2 class="text-4xl font-bold">Tambah Lokasi</h2>
+        </section>
+
+        <!-- Form Section -->
+        <section class="bg-red-600 justify-center w-full">
+            <div class="flex justify-center items-center w-full p-8">
+                <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-4xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="nama_cabang" class="block text-sm font-medium text-gray-600">Nama Cabang</label>
+                            <input type="text" id="nama_cabang" name="nama_cabang" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan Nama Cabang" required>
+                        </div>
+
+                        <div>
+                            <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
+                            <input type="text" id="alamat" name="alamat" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan Alamat" required>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <div class="flex-1">
+                                <label for="jam_buka" class="block text-sm font-medium text-gray-600">Jam Buka</label>
+                                <input type="time" id="jam_buka" name="jam_buka" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            </div>
+
+                            <div class="flex-1">
+                                <label for="jam_tutup" class="block text-sm font-medium text-gray-600">Jam Tutup</label>
+                                <input type="time" id="jam_tutup" name="jam_tutup" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="link_gmaps" class="block text-sm font-medium text-gray-600">Link Google Maps</label>
+                            <input type="text" id="link_gmaps" name="link_gmaps" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan Link" required>
+                        </div>
+
+                        <div>
+                            <label for="gambar" class="block text-sm font-medium text-gray-600">Gambar</label>
+                            <input type="file" id="gambar" name="gambar" class="w-full p-3 border border-gray-300 rounded-md mt-2" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="w-full bg-red-600 text-white font-semibold py-3 rounded-md hover:bg-red-700">Tambahkan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
