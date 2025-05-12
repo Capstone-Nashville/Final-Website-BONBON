@@ -61,6 +61,7 @@ require_once __DIR__ . '/../api/config/koneksi.php';
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
                 <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
                 <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>   
+                <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>
             </div>
             <!-- Right-aligned Login Button -->
             <a href="login.php"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
@@ -261,6 +262,8 @@ require_once __DIR__ . '/../api/config/koneksi.php';
             document.getElementById('menu').classList.add('active-link');
         } else if (currentUrl.includes('lokasi.php')) {
             document.getElementById('lokasi').classList.add('active-link');
+        } else if (currentUrl.includes('ulasan.php')) {
+            document.getElementById('ulasan').classList.add('active-link');
         }
     </script>
 </body>
