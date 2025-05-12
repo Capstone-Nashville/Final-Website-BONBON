@@ -1,0 +1,11 @@
+# Environment files
+.env
+.env.*          # Mengabaikan semua variasi .env (e.g., .env.production)
+
+# Dependency folder
+vendor/
+node_modules/
+
+# File sensitif lainnya
+config.php
+*.log

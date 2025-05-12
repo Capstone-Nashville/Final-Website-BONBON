@@ -1,3 +1,8 @@
+<?php
+define('ACCESS_ALLOWED', true);
+require_once __DIR__ . '/../api/config/koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,13 +57,13 @@
         <div class="flex justify-between items-center p-4">
             <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
-                <a href="index.html" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                <a href="index.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
-                <a href="menu.html" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.html" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>   
+                <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
+                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>   
             </div>
             <!-- Right-aligned Login Button -->
-            <a href="login.html"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <a href="login.php"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
         </div>
     </nav>
 
@@ -90,7 +95,26 @@
     <!-- Kategori Menu -->
     <section id="semua" class="category-section active">
         <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-12 px-40">
-            <!-- Menu Item coffee -->
+            <?php
+            $result = mysqli_query($conn, "SELECT * FROM menu");
+            while ($menu = mysqli_fetch_assoc($result)) :
+            ?>
+                <div class="bg-white rounded-lg shadow-lg p-4">
+                    <img src="images_menu/<?= $menu['gambar_produk'] ?>" alt="<?= $menu['nama_produk'] ?>" class="w-36 h-48 object-cover mx-auto">
+                    <div class="text-left mt-4">
+                        <p class="font-bold text-xl text-black"><?= $menu['nama_produk'] ?></p>
+                        <p class="text-red-600 font-bold text-base mt-1 border-2 border-red-600 rounded-full inline-block py-1 px-3">
+                            Rp <?= number_format($menu['harga'], 0, ',', '.') ?>
+                        </p>
+                        <div class="flex gap-2 mt-3">
+                            <a href="edit_menu.php?id=<?= $menu['id_menu'] ?>" class="text-blue-600 hover:underline text-sm">Edit</a>
+                            <a href="../api/controller/aksi_hapus_menu.php" onclick="return confirm('Hapus menu ini?')" class="text-red-600 hover:underline text-sm">Hapus</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        
+        <!-- Menu Item coffee -->
             <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 block transform transition duration-300 hover:scale-105">
                 <img src="images/stroberisundae.svg" alt="Strawberry Sundae" class="w-36 h-48 object-cover mx-auto">
                 <div class="text-left mt-4">
@@ -229,13 +253,13 @@
         const currentUrl = window.location.pathname;
         
         // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('index.html')) {
+        if (currentUrl.includes('index.php')) {
             document.getElementById('home').classList.add('active-link');
         } else if (currentUrl.includes('kemitraan.html')) {
             document.getElementById('kemitraan').classList.add('active-link');
-        } else if (currentUrl.includes('menu.html')) {
+        } else if (currentUrl.includes('menu.php')) {
             document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.html')) {
+        } else if (currentUrl.includes('lokasi.php')) {
             document.getElementById('lokasi').classList.add('active-link');
         }
     </script>

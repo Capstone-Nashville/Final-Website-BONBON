@@ -1,3 +1,9 @@
+<?php
+define('ACCESS_ALLOWED', true);
+require_once __DIR__ . '/../api/config/koneksi.php';
+$lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +17,6 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
-
         .active-link {
             outline: 3px solid #d3293b; /* Outline warna merah */
             outline-offset: 6px;
@@ -25,13 +30,13 @@
         <div class="flex justify-between items-center p-4">
             <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
-                <a href="index.html" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                <a href="index.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
-                <a href="menu.html" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.html" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                    
+                <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
+                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                    
             </div>
             <!-- Right-aligned Login Button -->
-            <a href="login.html"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <a href="login.php"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
         </div>
     </nav>
 
@@ -53,16 +58,17 @@
     <section class="bg-red-600">
         <!-- Lokasi Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12 px-40">
-            <!-- Lokasi 1 -->
+            <?php while ($row = mysqli_fetch_assoc($lokasi)): ?>
             <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
-                <img src="images/location1.jpg" alt="Bonbon Sirad Salman" class="w-full h-48 object-cover">
+                <img src="images_lokasi/<?= htmlspecialchars($row['gambar_outlet']) ?>" alt="<?= htmlspecialchars($row['nama_outlet']) ?>" class="w-full h-48 object-cover">
                 <div class="p-4 text-left">
-                    <h3 class="font-bold text-2xl text-red-600">BONBON SIRADJ SALMAN</h3>
-                    <p class="text-gray-700 text-sm">Jl. Siradj Salman, Air Hitam, Kec. Samarinda Ulu, Kota Samarinda, Kalimantan Timur 75243</p>
-                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 10:00-22:00</p>
-                    <a href="https://maps.app.goo.gl/jAy81PH7jcEs26wk8" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
+                    <h3 class="font-bold text-2xl text-red-600"><?= htmlspecialchars(strtoupper($row['nama_outlet'])) ?></h3>
+                    <p class="text-gray-700 text-sm"><?= htmlspecialchars($row['alamat']) ?></p>
+                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 <?= htmlspecialchars($row['jam_operasional']) ?></p>
+                    <a href="<?= htmlspecialchars($row['link_gmaps']) ?>" target="_blank" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
                 </div>
             </div>
+            <?php endwhile; ?>    
 
             <!-- Lokasi 2 -->
             <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
@@ -149,13 +155,13 @@
         // Get the current URL
         const currentUrl = window.location.pathname;
         // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('index.html')) {
+        if (currentUrl.includes('index.php')) {
             document.getElementById('home').classList.add('active-link');
         } else if (currentUrl.includes('kemitraan.html')) {
             document.getElementById('kemitraan').classList.add('active-link');
-        } else if (currentUrl.includes('menu.html')) {
+        } else if (currentUrl.includes('menu.php')) {
             document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.html')) {
+        } else if (currentUrl.includes('lokasi.php')) {
             document.getElementById('lokasi').classList.add('active-link');
         }
     </script>

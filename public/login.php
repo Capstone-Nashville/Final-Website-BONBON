@@ -1,3 +1,14 @@
+<?php
+define('ACCESS_ALLOWED', true);
+
+$koneksi_path = realpath(__DIR__ . '/../api/config/koneksi.php');
+if ($koneksi_path) {
+    require_once $koneksi_path;
+} else {
+    die("<script>alert('Koneksi ke database gagal!');</script>");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +28,8 @@
         </div>
 
         <!-- Login Form -->
-        <form id="loginForm" class="space-y-4">
-            <div>
+        <form id="loginForm" action="/bonbon/api/controller/aksi_login.php" method="post" class="space-y-4">
+            <div> 
                 <label for="loginEmail" class="block text-sm font-medium text-gray-600">Email</label>
                 <input type="email" id="loginEmail" name="loginEmail" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Enter your email" required>
             </div>
@@ -36,7 +47,7 @@
         </form>
 
         <!-- Register Form -->
-        <form id="registerForm" class="space-y-4 hidden">
+        <form id="registerForm" action="/bonbon/api/controller/aksi_register.php" method="post" class="space-y-4 hidden">
             <div>
                 <label for="registerName" class="block text-sm font-medium text-gray-600">Full Name</label>
                 <input type="text" id="registerName" name="registerName" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Enter your full name" required>

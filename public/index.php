@@ -1,3 +1,15 @@
+<?php
+define('ACCESS_ALLOWED', true);
+
+$koneksi_path = realpath(__DIR__ . '/../api/config/koneksi.php');
+if ($koneksi_path) {
+    require_once $koneksi_path;
+    // echo "<script>alert('Koneksi ke database berhasil!');</script>";
+} else {
+    echo "<script>alert('Koneksi ke database gagal!');</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,13 +50,13 @@
         <div class="flex justify-between items-center p-4">
             <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
-                <a href="index.html" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                <a href="index.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
-                <a href="menu.html" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.html" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>   
+                <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
+                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>   
             </div>
             <!-- Right-aligned Login Button -->
-            <a href="login.html" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <a href="login.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
         </div>
     </nav>
 
@@ -59,7 +71,7 @@
         <section class="flex justify-between items-center bg-white text-red-600 py-10 px-40">
             <div class="w-1/3">
                 <h2 class="text-4xl font-bold">Nikmati Momen dengan Es Krim, Teh, dan Kopi dari BONBON!</h2>
-                <a href="menu.html" class="bg-red-600 text-white font-bold px-6 py-2 rounded-full mt-4 inline-block">Lihat Menu</a>
+                <a href="menu.php" class="bg-red-600 text-white font-bold px-6 py-2 rounded-full mt-4 inline-block">Lihat Menu</a>
             </div>
             <div class="w-1/2">
                 <img src="images/menumitra.svg" alt="Header Menu" class="w-full h-auto">
@@ -144,42 +156,42 @@
         <!-- Menu Items Grid -->
         <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-8 px-40">
             <!-- Menu Item 1 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/summer.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Signature</h3>
                 </div>
             </a>
             <!-- Menu Item 2 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/mango.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Float</h3>
                 </div>
             </a>
             <!-- Menu Item 3 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/boba.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Coffee Series</h3>
                 </div>
             </a>
             <!-- Menu Item 4 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/tea.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Tea Series</h3>
                 </div>
             </a>
             <!-- Menu Item 5 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/strobericone.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Waffle Cone</h3>
                 </div>
             </a>
             <!-- Menu Item 6 -->
-            <a href="menu.html" class="block transform transition duration-300 hover:scale-105">
+            <a href="menu.php" class="block transform transition duration-300 hover:scale-105">
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg p-4 text-center">
                 <img src="images/stroberisundae.svg" alt="Signature" class="w-36 h-48 object-cover mx-auto">
                 <h3 class="text-xl font-semibold text-red-600 mt-4">Sundae</h3>
@@ -345,13 +357,13 @@
         const currentUrl = window.location.pathname;
         
         // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('index.html')) {
+        if (currentUrl.includes('index.php')) {
             document.getElementById('home').classList.add('active-link');
         } else if (currentUrl.includes('kemitraan.html')) {
             document.getElementById('kemitraan').classList.add('active-link');
-        } else if (currentUrl.includes('menu.html')) {
+        } else if (currentUrl.includes('menu.php')) {
             document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.html')) {
+        } else if (currentUrl.includes('lokasi.php')) {
             document.getElementById('lokasi').classList.add('active-link');
         }
     </script>

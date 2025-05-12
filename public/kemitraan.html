@@ -25,13 +25,13 @@
         <div class="flex justify-between items-center p-4">
             <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
-                <a href="index.html" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                <a href="index.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
-                <a href="menu.html" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.html" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                    
+                <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
+                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                     
             </div>
             <!-- Right-aligned Login Button -->
-            <a href="login.html"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <a href="login.php"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
         </div>
     </nav>
 
@@ -111,7 +111,7 @@
             <div class="w-2/3 text-left">
                 <h2 class="text-3xl font-semibold text-red-600 mb-6">Bergabunglah Sekarang dan Mulai Bisnis Anda!</h2>
                 <p class="text-lg mb-8 text-red-600">Jangan lewatkan kesempatan untuk bekerja sama dengan BONBON, menjadi mitra kami dan nikmati keuntungan yang luar biasa.</p>
-                <a href="daftar.html" class="bg-red-600 text-white font-bold px-8 py-3 rounded-full hover:bg-red-800 transition">Daftar Sekarang</a>
+                <a href="tel:+6282155358684"" class="bg-red-600 text-white font-bold px-8 py-3 rounded-full hover:bg-red-800 transition">Daftar Sekarang</a>
             </div>
         </div>
     </section>
@@ -183,13 +183,13 @@
         // Get the current URL
         const currentUrl = window.location.pathname;
         // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('index.html')) {
+        if (currentUrl.includes('index.php')) {
             document.getElementById('home').classList.add('active-link');
         } else if (currentUrl.includes('kemitraan.html')) {
             document.getElementById('kemitraan').classList.add('active-link');
-        } else if (currentUrl.includes('menu.html')) {
+        } else if (currentUrl.includes('menu.php')) {
             document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.html')) {
+        } else if (currentUrl.includes('lokasi.php')) {
             document.getElementById('lokasi').classList.add('active-link');
         }
     </script>
