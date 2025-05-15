@@ -3,13 +3,13 @@ define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
 
-if ($_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
     exit;
 }
 
-$id = $_GET['id'] ?? null;
-if (!$id) {
+$id_menu = $_GET['id_menu'] ?? null;
+if (!$id_menu) {
     $_SESSION['flash_message'] = '❌ ID menu tidak ditemukan';
     header("Location: edit_menu.php");
     exit;
@@ -17,7 +17,7 @@ if (!$id) {
 
 $query = "SELECT * FROM menu WHERE id_menu = ?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $id);
+$stmt->bind_param("i", $id_menu);
 $stmt->execute();
 $result = $stmt->get_result();
 $menu = $result->fetch_assoc();
