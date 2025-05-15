@@ -3,7 +3,7 @@ define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
 
-if ($_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
     exit;
 }
@@ -134,7 +134,7 @@ if (isset($_SESSION['flash_message'])) {
                                     Rp <?= number_format($menu['harga'], 0, ',', '.') ?>
                                 </p>
                                 <div class="mt-4 flex justify-center gap-2">
-                                    <a href="form_edit_menu.php?id=<?= $menu['id_menu'] ?>" class="bg-yellow-400 text-white py-2 px-4 rounded-md hover:scale-105">Edit</a>
+                                    <a href="/bonbon/public/form_edit_menu.php?id_menu=<?= $menu['id_menu'] ?>" class="bg-yellow-400 text-white py-2 px-4 rounded-md hover:scale-105">Edit</a>
                                     <form action="/bonbon/api/controller/aksi_hapus_menu.php" method="POST" onsubmit="return confirm('Apakah kamu yakin ingin menghapus menu ini?');">
                                         <input type="hidden" name="id_menu" value="<?= $menu['id_menu'] ?>">
                                         <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:scale-105">Hapus</button>

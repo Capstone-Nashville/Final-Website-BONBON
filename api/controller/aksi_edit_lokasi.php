@@ -11,31 +11,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $jam_tutup = $_POST['jam_tutup'] ?? '';
     $link = $_POST['link_gmaps'] ?? '';
     $gambar_lama = $_POST['gambar_lama'] ?? '';
+    $gambar = $gambar_lama;
 
     if (empty($nama) || str_word_count($nama) < 2) {
         $_SESSION['flash_message'] = '❌ Nama cabang terlalu pendek';
-        header("Location: ../../public/form_tambah_lokasi.php");
+        header("Location: ../../public/form_edit_lokasi.php");
         exit;
     }
 
     if (str_word_count($alamat) < 3) {
         $_SESSION['flash_message'] = '❌ Alamat minimal harus terdiri dari 3 kata';
-        header("Location: ../../public/form_tambah_lokasi.php");
+        header("Location: ../../public/form_edit_lokasi.php");
         exit;
     }
 
-    $allowed_ext = ['jpg', 'jpeg', 'png', 'svg'];
-    $file_ext = strtolower(pathinfo($gambar, PATHINFO_EXTENSION));
-    if (!in_array($file_ext, $allowed_ext)) {
-        $_SESSION['flash_message'] = '❌ Format gambar tidak valid. Gunakan JPG, JPEG, PNG, atau SVG.';
-        header("Location: ../../public/form_tambah_lokasi.php");
-        exit;
-    }
+    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
+        $allowed_ext = ['jpg', 'jpeg', 'png', 'svg'];
+        $file_ext = strtolower(pathinfo($_FILES['gambar']['name'], PATHINFO_EXTENSION));
+        $file_size = $_FILES['gambar']['size'];
 
-    if ($_FILES['gambar']['size'] > 2 * 1024 * 1024) {
-        $_SESSION['flash_message'] = '❌ Ukuran gambar terlalu besar. Maksimal 2MB.';
-        header("Location: ../../public/form_tambah_lokasi.php");
-        exit;
+        if (!in_array($file_ext, $allowed_ext)) {
+            $_SESSION['flash_message'] = '❌ Format gambar tidak valid. Gunakan JPG, JPEG, PNG, atau SVG.';
+            header("Location: ../../public/form_edit_lokasi.php?id_lokasi_outlet=$id_lokasi_outlet");
+            exit;
+        }
+
+        if ($file_size > 2 * 1024 * 1024) {
+            $_SESSION['flash_message'] = '❌ Ukuran gambar terlalu besar. Maksimal 2MB.';
+            header("Location: ../../public/form_edit_lokasi.php?id_lokasi_outlet=$id_lokasi_outlet");
+            exit;
+        }
+
+        $gambar = uniqid('menu_') . '.' . $file_ext;
+        $upload_path = __DIR__ . '/../../public/images_menu/' . $gambar;
+        move_uploaded_file($_FILES['gambar']['tmp_name'], $upload_path);
     }
 
     $jam = $jam_buka . ' - ' . $jam_tutup;
@@ -46,15 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     $data_lama = $result->fetch_assoc();
-
-    if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
-        $gambar = $_FILES['gambar']['name'];
-        $tmp = $_FILES['gambar']['tmp_name'];
-        $upload_path = __DIR__ . '/../../public/images_lokasi/' . basename($gambar);
-        move_uploaded_file($tmp, $upload_path);
-    } else {
-        $gambar = $gambar_lama;
-    }
 
     $perubahan = ($nama !== $data_lama['nama_outlet']) ||
                     ($alamat !== $data_lama['alamat']) ||

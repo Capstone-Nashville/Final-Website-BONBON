@@ -3,7 +3,7 @@ define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
 
-if ($_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
     exit;
 }
