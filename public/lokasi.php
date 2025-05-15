@@ -101,32 +101,20 @@ $is_logged_in = isset($_SESSION['id_user']);
                 </div>
             </div>
         
-                <!-- Sosial Media -->
+            <!-- Sosial Media -->
             <div class="text-center md:text-right">
                 <p class="text-sm font-semibold mb-2">Ikuti Kami</p>
                 <div class="flex justify-center md:justify-end gap-4">
-                    <!-- Ikon Instagram -->
-                    <a href="https://www.instagram.com/bonbon.smr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-red-600 hover:text-red-800 transition">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7.5 3h9A4.5 4.5 0 0121 7.5v9A4.5 4.5 0 0116.5 21h-9A4.5 4.5 0 013 16.5v-9A4.5 4.5 0 017.5 3z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25a3.75 3.75 0 11-6 0 3.75 3.75 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75h.008v.008h-.008z" />
-                        </svg>
+                    <a href="https://www.instagram.com/bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="Instagram Bonbon">
+                        <img src="images/instagram.jpg" alt="Instagram Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
                     </a>
-                    <!-- TikTok Icon SVG -->
-                    <a href="https://www.tiktok.com/@bonbon.smr?is_from_webapp=1&sender_device=pc" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-12 h-12 text-red-600 fill-current">
-                            <path d="M41,15.4c-3.1,0-6-1-8.4-2.7v14.1c0,7.3-5.9,13.2-13.2,13.2S6.2,34.1,6.2,26.8s5.9-13.2,13.2-13.2c1,0,2,.1,3,.5v5.5
-                            c-1-.5-2-.7-3-.7c-4.3,0-7.8,3.5-7.8,7.8s3.5,7.8,7.8,7.8s7.8-3.5,7.8-7.8V4h5.6c0.2,3.1,1.9,5.9,4.6,7.4C37.8,13.6,39.4,14.3,41,15.4z"/>
-                        </svg>
+
+                    <a href="https://www.tiktok.com/@bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="TikTok Bonbon">
+                        <img src="images/tiktok.jpg" alt="TikTok Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
                     </a>
-                    <!-- Ikon WA -->
-                    <a href="tel:+6282155358684" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-12 h-12 text-red-600 fill-current">
-                            <path d="M16.003 3C9.383 3 4 8.383 4 15.003c0 2.522.748 4.867 2.021 6.83L4 29l7.42-2.02A11.94 11.94 0 0016.003 27C22.623 27 28 21.618 28 15S22.623 3 16.003 3zm0 2c5.513 0 10 4.486 10 10 0 5.513-4.487 10-10 10a9.94 9.94 0 01-5.076-1.378l-.356-.215-4.434 1.208 1.218-4.366-.224-.36A9.94 9.94 0 016.003 15c0-5.514 4.486-10 10-10zm4.59 5.62c-.31-.154-1.826-.9-2.11-.996-.283-.095-.49-.143-.697.154-.208.296-.797.997-.978 1.202-.18.207-.36.233-.67.078-.31-.156-1.31-.483-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.135-.634.14-.14.31-.36.467-.54.154-.18.207-.31.31-.517.103-.208.05-.39-.026-.543-.077-.154-.697-1.678-.954-2.31-.25-.62-.5-.537-.697-.547h-.596c-.206 0-.538.077-.82.38-.282.31-1.074 1.05-1.074 2.55s1.1 2.96 1.253 3.164c.154.207 2.14 3.27 5.186 4.59.724.312 1.29.498 1.733.637.728.232 1.39.2 1.916.12.585-.09 1.82-.744 2.08-1.464.256-.72.256-1.336.18-1.464-.078-.128-.28-.207-.585-.36z"/>
-                        </svg>
+
+                    <a href="https://wa.me/6282155358684" aria-label="WhatsApp Bonbon" target="_blank" rel="noopener noreferrer">
+                        <img src="images/whatsapp.jpg" alt="WhatsApp Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
                     </a>
                 </div>
             </div>
@@ -138,20 +126,18 @@ $is_logged_in = isset($_SESSION['id_user']);
     </footer>
 
     <script>
-        // Get the current URL
-        const currentUrl = window.location.pathname;
-        
-        // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('beranda.php')) {
-            document.getElementById('home').classList.add('active-link');
-        } else if (currentUrl.includes('franchise.php')) {
-            document.getElementById('franchise').classList.add('active-link');
-        } else if (currentUrl.includes('menu.php')) {
-            document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.php')) {
-            document.getElementById('lokasi').classList.add('active-link');
-        } else if (currentUrl.includes('ulasan.php')) {
-            document.getElementById('ulasan').classList.add('active-link');
+        // Highlight link navigasi yang aktif
+        const pageMap = {
+            'beranda.php': 'home',
+            'franchise.php': 'franchise',
+            'menu.php': 'menu',
+            'lokasi.php': 'lokasi',
+            'ulasan.php': 'ulasan',
+        };
+        const currentPage = window.location.pathname.split('/').pop();
+        if (pageMap[currentPage]) {
+            const activeLink = document.getElementById(pageMap[currentPage]);
+            if (activeLink) activeLink.classList.add('active-link');
         }
     </script>
 </body>

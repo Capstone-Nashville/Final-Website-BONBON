@@ -114,17 +114,18 @@ if ($is_logged_in) {
     <?php endif; ?>
 
     <script>
-        const currentUrl = window.location.pathname;
-        if (currentUrl.includes('beranda.php')) {
-            document.getElementById('home').classList.add('active-link');
-        } else if (currentUrl.includes('franchise.php')) {
-            document.getElementById('franchise').classList.add('active-link');
-        } else if (currentUrl.includes('menu.php')) {
-            document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.php')) {
-            document.getElementById('lokasi').classList.add('active-link');
-        } else if (currentUrl.includes('ulasan.php')) {
-            document.getElementById('ulasan').classList.add('active-link');
+        // Highlight navigasi yang aktif berdasarkan halaman
+        const pageMap = {
+            'beranda.php': 'home',
+            'franchise.php': 'franchise',
+            'menu.php': 'menu',
+            'lokasi.php': 'lokasi',
+            'ulasan.php': 'ulasan',
+        };
+        const currentPage = window.location.pathname.split('/').pop();
+
+        if (pageMap[currentPage]) {
+            document.getElementById(pageMap[currentPage])?.classList.add('active-link');
         }
     </script>
 </body>

@@ -10,12 +10,18 @@ session_start();
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <title>Login | BONBON</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
 <body>
+    <div id="loading-overlay" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+        <div class="spinner-container"></div>
+        <img src="images/logo.png" alt="BONBON Logo" class="w-32 h-32 object-contain z-10 ml-4">
+    </div>
+
     <div class="flex h-screen">
         <div class="bg-white flex flex-col justify-center items-center w-1/3 h-full relative">
             <div class="absolute inset-0">
@@ -84,6 +90,37 @@ session_start();
             btn.classList.remove('text-red-600');
         }
     }
+
+                // Tangkap klik link dan tampilkan loading sebelum pindah
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const content = document.getElementById('content');
+
+            // Saat halaman siap, sembunyikan loading dan tampilkan konten
+            loadingOverlay.style.display = 'none';
+            content.style.display = 'block';
+
+            // Tangkap klik link untuk tampilkan loading dan delay sebelum pindah
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+
+                // Abaikan link anchor kosong, javascript:void, atau tidak ada href
+                if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+                e.preventDefault();
+
+                // Tampilkan loading, sembunyikan konten
+                loadingOverlay.style.display = 'flex';
+                content.style.display = 'none';
+
+                // Delay 1 detik lalu pindah halaman
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1000);
+            });
+            });
+        });
     </script>
 </body>
 </html>
