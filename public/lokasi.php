@@ -1,7 +1,12 @@
 <?php
+session_start();
+
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/koneksi.php';
+
 $lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
+
+$is_logged_in = isset($_SESSION['id_user']);
 ?>
 
 <!DOCTYPE html>
@@ -30,14 +35,17 @@ $lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
         <div class="flex justify-between items-center p-4">
             <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
-                <a href="index.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
-                <a href="kemitraan.html" id="kemitraan" class="text-red-600 font-bold hover:text-red-800">Kemitraan</a>
+                <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>
                 <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
                 <a href="lokasi.php" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a> 
                 <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>                   
             </div>
-            <!-- Right-aligned Login Button -->
-            <a href="login.php"  class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <?php if ($is_logged_in): ?>
+                <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
+            <?php else: ?>
+                <a href="login.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+            <?php endif; ?>
         </div>
     </nav>
 
@@ -57,7 +65,6 @@ $lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
     </section>
 
     <section class="bg-red-600">
-        <!-- Lokasi Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12 px-40">
             <?php while ($row = mysqli_fetch_assoc($lokasi)): ?>
             <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
@@ -69,29 +76,7 @@ $lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
                     <a href="<?= htmlspecialchars($row['link_gmaps']) ?>" target="_blank" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
                 </div>
             </div>
-            <?php endwhile; ?>    
-
-            <!-- Lokasi 2 -->
-            <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
-                <img src="images/location2.jpg" alt="Bonbon Cendana" class="w-full h-48 object-cover">
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-2xl text-red-600">BONBON CENDANA</h3>
-                    <p class="text-gray-700 text-sm mt-8">Jl. Cendana, Tlk. Lerong Ulu, Kec. Sungai Kunjang, Kota Samarinda, Kalimantan Timur 75124</p>
-                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 10:00-22:00</p>
-                    <a href="https://maps.app.goo.gl/RgBTicZxJ5nVAnzUA" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
-                </div>
-            </div>
-
-            <!-- Lokasi 3 -->
-            <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
-                <img src="images/location3.jpg" alt="Bonbon Cut Nyak Dien" class="w-full h-48 object-cover">
-                <div class="p-4 text-left">
-                    <h3 class="font-bold text-2xl text-red-600">BONBON CUT NYAK DIEN</h3>
-                    <p class="text-gray-700 text-sm">Jl. Cut Nyak Dien, Melayu, Kec. Tenggarong, Kabupaten Kutai Kartanegara, Kalimantan Timur</p>
-                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 10:00-22:00</p>
-                    <a href="https://maps.app.goo.gl/eTNZmAafXa9TTkJA6" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
-                </div>
-            </div>
+            <?php endwhile; ?>
         </div>
     </section>
 
@@ -157,10 +142,10 @@ $lokasi = mysqli_query($conn, "SELECT * FROM lokasi_outlet");
         const currentUrl = window.location.pathname;
         
         // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('index.php')) {
+        if (currentUrl.includes('beranda.php')) {
             document.getElementById('home').classList.add('active-link');
-        } else if (currentUrl.includes('kemitraan.html')) {
-            document.getElementById('kemitraan').classList.add('active-link');
+        } else if (currentUrl.includes('franchise.php')) {
+            document.getElementById('franchise').classList.add('active-link');
         } else if (currentUrl.includes('menu.php')) {
             document.getElementById('menu').classList.add('active-link');
         } else if (currentUrl.includes('lokasi.php')) {

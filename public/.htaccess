@@ -1,0 +1,11 @@
+<If "%{REQUEST_METHOD} == 'GET' && %{THE_REQUEST} =~ m#\s/form_(edit|tambah)_.*\.php#">
+    Require all denied
+</If>
+
+<If "%{REQUEST_METHOD} == 'GET' && %{THE_REQUEST} =~ m#\s/edit_.*\.php#">
+    Require all denied
+</If>
+
+<If "%{REQUEST_METHOD} == 'GET' && %{THE_REQUEST} =~ m#\s/dashboard.php#">
+    Require all denied
+</If>

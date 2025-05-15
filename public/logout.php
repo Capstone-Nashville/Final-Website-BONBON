@@ -1,6 +1,9 @@
 <?php
 session_start();
-session_unset(); // Hapus semua variabel session
-session_destroy(); // Hancurkan session
-header("Location: login.php");
+session_unset();
+session_destroy();
+
+echo "<script>alert('Anda telah berhasil logout.');</script>";
+header("Location: beranda.php");
 exit;
+?>

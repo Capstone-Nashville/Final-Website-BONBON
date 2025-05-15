@@ -588,6 +588,10 @@ video {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
 .fixed {
   position: fixed;
 }
@@ -638,6 +642,10 @@ video {
 
 .top-1\/2 {
   top: 50%;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .z-10 {
@@ -753,6 +761,10 @@ video {
   height: 100vh;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -799,6 +811,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .max-w-2xl {

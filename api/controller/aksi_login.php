@@ -1,14 +1,14 @@
 <?php
-define('ACCESS_ALLOWED', true);
-
 session_start();
+define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../config/koneksi.php';
 
-$email = $_POST['loginEmail'] ?? '';
-$password = $_POST['loginPassword'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
 
 if (empty($email) || empty($password)) {
-    echo "<script>alert('Email dan password harus diisi'); window.location.href='../../public/login.php';</script>";
+    $_SESSION['flash_message'] = 'Email dan password harus diisi';
+    header("Location: ../../public/login.php");
     exit;
 }
 
@@ -24,15 +24,22 @@ if ($user = mysqli_fetch_assoc($result)) {
         $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
         $_SESSION['role'] = $user['role'];
 
+        $_SESSION['flash_message'] = 'Login berhasil sebagai ' . ucfirst($user['role']);
+
         if ($user['role'] === 'admin') {
-            echo "<script>alert('Login berhasil sebagai Admin'); window.location.href='../../public/dashboard_admin.php';</script>";
+            header("Location: ../../public/dashboard.php");
         } else {
-            echo "<script>alert('Login berhasil sebagai Pengunjung'); window.location.href='../../public/dashboard_pengunjung.php';</script>";
+            header("Location: ../../public/beranda.php");
         }
+        exit;
     } else {
-        echo "<script>alert('Password salah'); window.location.href='../../public/login.php';</script>";
+        $_SESSION['flash_message'] = '❌ Password salah';
+        header("Location: ../../public/login.php");
+        exit;
     }
 } else {
-    echo "<script>alert('Email tidak ditemukan'); window.location.href='../../public/login.php';</script>";
+    $_SESSION['flash_message'] = '❌ Email tidak ditemukan';
+    header("Location: ../../public/login.php");
+    exit;
 }
 ?>

@@ -1,0 +1,3 @@
+<If "%{REQUEST_METHOD} == 'GET' && %{THE_REQUEST} =~ m#\s/bonbon/api/controller/aksi_.*\.php#">
+    Require all denied
+</If>

@@ -1,23 +1,5 @@
 <?php
 session_start();
-
-define('ACCESS_ALLOWED', true);
-require_once __DIR__ . '/../api/config/koneksi.php';
-
-$kategori_aktif = $_GET['kategori'] ?? 'semua';
-
-if ($kategori_aktif === 'semua') {
-    $query = "SELECT * FROM menu ORDER BY kategori, nama_produk";
-    $stmt = $conn->prepare($query);
-} else {
-    $query = "SELECT * FROM menu WHERE kategori = ? ORDER BY nama_produk";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $kategori_aktif);
-}
-$stmt->execute();
-$result = $stmt->get_result();
-$menus = $result->fetch_all(MYSQLI_ASSOC);
-
 $is_logged_in = isset($_SESSION['id_user']);
 ?>
 
@@ -26,39 +8,13 @@ $is_logged_in = isset($_SESSION['id_user']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
+    <title>Franchisee BONBON</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-        }
-        .category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color:#ffffff
-        }
-        .category-nav {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 20px;
-        }
-        .category-nav a {
-            text-decoration: none;
-            color:#ffffff;
-            font-weight: bold;
-            padding: 10px;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.3s ease;
-        }
-        .category-nav a:hover, .category-nav a.active {
-            border-bottom: 2px solid #ffffff;
         }
 
         .active-link {
@@ -68,17 +24,16 @@ $is_logged_in = isset($_SESSION['id_user']);
         }
     </style>
 </head>
+<body class="bg-white">
 
-<body class="bg-red-600">
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">
                 <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>
                 <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.php" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>
-                <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>
+                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                       
+                <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>                 
             </div>
             <?php if ($is_logged_in): ?>
                 <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
@@ -88,55 +43,80 @@ $is_logged_in = isset($_SESSION['id_user']);
         </div>
     </nav>
 
-    <!-- Banner -->
-    <header class="relative w-full overflow-hidden bg-white">
-        <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto">
-    </header>
+    <main class="p-0">
+        <header class="relative">
+            <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto">
+        </header>
 
-    <!-- Header -->
-    <header class="text-center py-16 text-red-600 bg-white">
-        <h1 class="text-4xl font-bold">Menu</h1>
-        <p class="mt-4 text-xl px-6 md:px-60 py-2">Nikmati Setiap Momen Manis dengan Bonbon Ice Cream, Tea & Coffee. Temukan Produk Favorit Anda dan Rasakan Kenikmatan</p>
-    </header>
-
-    <!-- Navigation Categories -->
-    <nav class="category-nav flex justify-center gap-6 py-6 flex-wrap text-white text-lg font-bold">
-        <?php
-        $kategori_list = [
-            "semua" => "Semua",
-            "coffee-series" => "Coffee Series",
-            "waffle-cone" => "Waffle Cone",
-            "float" => "Float",
-            "signature" => "Signature",
-            "sundae" => "Sundae",
-            "tea-series" => "Tea Series"
-        ];
-        ?>
-        <?php foreach ($kategori_list as $key => $label): ?>
-            <a href="menu.php?kategori=<?= $key ?>" class="category-link text-white text-lg font-bold <?= $kategori_aktif === $key ? 'active' : '' ?>">
-                <?= $label ?>
-            </a>
-        <?php endforeach; ?>
-    </nav>
-
-    <!-- Menu Grid -->
-    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-12 px-40">
-        <?php if (empty($menus)): ?>
-            <p class="text-white col-span-full">Belum ada menu di kategori ini.</p>
-        <?php else: ?>
-            <?php foreach ($menus as $menu): ?>
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg p-6 transform transition duration-300 hover:scale-105">
-                    <img src="images_menu/<?= htmlspecialchars($menu['gambar_produk']) ?>" alt="<?= htmlspecialchars($menu['nama_produk']) ?>" class="w-36 h-48 object-cover mx-auto">
-                    <div class="text-left mt-4">
-                        <p class="font-semibold text-xl text-black"><?= htmlspecialchars($menu['nama_produk']) ?></p>
-                        <p class="text-red-600 font-bold text-base mt-2 border-2 border-red-600 rounded-full inline-block py-1 px-3">
-                            Rp <?= number_format($menu['harga'], 0, ',', '.') ?>
-                        </p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+    <section class="relative bg-white text-red-600 px-32 py-16">
+        <div class="flex justify-between items-center">
+            <div class="w-60 overflow-hidden rounded-xl">
+                <img src="images/owner.jpg" alt="Bonbon Logo" class="w-full h-auto object-cover">
+            </div>
+            <div class="w-2/3 text-left px-8">
+                <h1 class="text-4xl md:text-4xl font-bold mb-4">Bergabunglah Menjadi Franchisee Bonbon!</h1>
+                <p class="text-lg md:text-xl">BONBON hadir untuk memberikan pengalaman tak terlupakan melalui berbagai pilihan es krim, teh, dan kopi terbaik yang menggabungkan rasa manis, segar, dan nikmat dalam satu tempat. Bonbon menawarkan menu, mulai dari es krim klasik hingga varian kopi kekinian, semua disajikan dengan cita rasa yang telah disesuaikan dengan selera masyarakat Indonesia.</p>
+            </div>
+        </div>
     </section>
+
+
+    <div class="w-full overflow-hidden bg-red-600">
+        <img src="images/wavebonbon.png" alt="Transisi" class="w-full h-auto -mt-1">
+    </div>
+
+    <section id="keuntungan" class="bg-red-600 py-16 px-8 md:px-32">
+            <h2 class="text-3xl font-semibold text-center text-white mb-12">Keuntungan Menjadi Franchisee Bonbon</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="mb-4">
+                        <img src="images/team.png" alt="Manajemen" class="w-32 h-32 mx-auto">
+                    </div>
+                    <h3 class="text-xl font-semibold text-red-600 mb-2">Pelatihan dan Manajemen Terstandarisasi </h3>
+                    <p class="text-sm text-gray-700">Kami menyediakan pelatihan profesional bagi karyawan serta sistem manajemen dan tata kelola usaha yang telah terverifikasi dan distandarisasi. Ini mencakup pengelolaan stok, pelayanan pelanggan, hingga pencatatan keuangan.</p>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="mb-4">
+                        <img src="images/consulting.png" alt="Keuntungan 2" class="w-32 h-32 mx-auto">
+                    </div>
+                    <h3 class="text-xl font-semibold text-red-600 mb-2">Konsultasi Gratis dan Pendampingan Bisnis</h3>
+                    <p class="text-sm text-gray-700">Tim Bonbon menyediakan konsultasi gratis yang bisa diakses kapan saja. Mulai dari strategi pemasaran, manajemen usaha, hingga troubleshooting operasional.</p>
+                </div>
+                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                    <div class="mb-4">
+                        <img src="images/social-media.png" alt="Keuntungan 3" class="w-32 h-32 mx-auto">
+                    </div>
+                    <h3 class="text-xl font-semibold text-red-600 mb-2">Pengelolaan Media Sosial untuk Promosi Digital</h3>
+                    <p class="text-sm text-gray-700">Kami juga membantu franchisee dalam pengelolaan media sosial, termasuk pelatihan pembuatan konten dan strategi promosi digital.</p>
+                </div>
+            </div>
+    </section>
+
+        <!-- Transisi Wave Image dengan background -->
+        <div class="w-full overflow-hidden bg-red-600">
+            <img src="images/roundedbonbon.png" alt="Transisi" class="w-full h-auto -mt-1">
+        </div>
+
+    <!-- Call to Action (CTA) -->
+    <section class="py-4 px-20 bg-white text-center">
+        <div class="flex justify-between items-center">
+            <!-- Gambar di kiri -->
+            <div class="w-1/3 py-1 px-6">
+                <img src="images/headermenu.svg" alt="Header Menu" class="w-full h-auto">
+            </div>
+            <!-- Teks dan Tombol di kanan -->
+            <div class="w-2/3 text-left">
+                <h2 class="text-3xl font-semibold text-red-600 mb-6">Bergabunglah Sekarang dan Mulai Bisnis Anda!</h2>
+                <p class="text-lg mb-8 text-red-600">Jangan lewatkan kesempatan untuk bekerja sama dengan BONBON, menjadi franchisee kami dan nikmati keuntungan yang luar biasa.</p>
+                <a href="tel:+6282155358684"" class="bg-red-600 text-white font-bold px-8 py-3 rounded-full hover:bg-red-800 transition">Daftar Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transisi Wave Image dengan background -->
+    <div class="w-full overflow-hidden bg-red-600">
+        <img src="images/roundedbonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
+    </div>
 
     <!-- Transisi Wave Image dengan background -->
     <div class="w-full overflow-hidden bg-red-600">
