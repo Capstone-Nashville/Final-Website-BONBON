@@ -11,7 +11,7 @@ if (isset($_SESSION['id_user'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,10 +19,13 @@ if (isset($_SESSION['id_user'])) {
     <title>Register | BONBON</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
 </head>
-<body class="flex h-screen">
+<body class="flex min-h-screen bg-red-600">
     <!-- Left Section -->
-    <div class="bg-white flex flex-col justify-center items-center w-1/3 h-full relative">
+    <div class="bg-white flex flex-col justify-center items-center w-1/3 relative min-h-screen">
         <div class="absolute inset-0">
             <img src="images/fotobonbon.svg" alt="BONBON Logo" class="w-full h-full object-cover">
         </div>

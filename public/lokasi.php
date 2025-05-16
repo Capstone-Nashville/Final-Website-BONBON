@@ -10,11 +10,11 @@ $is_logged_in = isset($_SESSION['id_user']);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lokasi BONBON - Es Krim, Teh, dan Kopi</title>
+    <title>Lokasi BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@ $is_logged_in = isset($_SESSION['id_user']);
             font-family: 'Poppins', sans-serif;
         }
         .active-link {
-            outline: 3px solid #d3293b; /* Outline warna merah */
+            outline: 3px solid #d3293b; 
             outline-offset: 6px;
             border-radius: 40%;
         }
@@ -33,7 +33,6 @@ $is_logged_in = isset($_SESSION['id_user']);
     <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
-            <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
                 <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>

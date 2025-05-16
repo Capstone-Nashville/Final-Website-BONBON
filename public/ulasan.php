@@ -24,12 +24,12 @@ if ($is_logged_in) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitra BONBON</title>
+    <title>Ulasan BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@ if ($is_logged_in) {
         }
 
         .active-link {
-            outline: 3px solid #d3293b; /* Outline warna merah */
+            outline: 3px solid #d3293b;
             outline-offset: 6px;
             border-radius: 40%;
         }
@@ -50,7 +50,6 @@ if ($is_logged_in) {
     <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
-            <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
                 <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
                 <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>
@@ -74,7 +73,7 @@ if ($is_logged_in) {
         </header>
     </main>
 
-    <section class="text-center py-2 px-4 relative bg-red-600">
+    <section class="text-center relative bg-red-600">
         <h2 class="text-white text-3xl font-bold mb-12">Tanggapan mereka tentang BONBON</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-lg mx-auto">
             <?php while ($row = mysqli_fetch_assoc($ulasan_result)): ?>
@@ -96,6 +95,41 @@ if ($is_logged_in) {
                 </div>
             <?php endwhile; ?>
         </div>
+
+        <div class="w-full overflow-hidden bg-red-600">
+            <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1" />
+        </div>
+
+        <footer class="bg-white text-black py-6 px-32">
+            <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 border-b border-gray-200 pb-6">
+                <div class="flex items-center gap-6">
+                    <img src="images/logo-bonbon.png" alt="BONBON Logo" class="w-24 h-24 object-contain" />
+                    <div class="text-left text-sm">
+                        <p class="font-semibold">PT. Fren & Co Group</p>
+                        <p>Jl. Sirad Salman No. 6A, Air Hitam,</p>
+                        <p>Samarinda Ulu, 75124</p>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-sm font-semibold mb-2">Ikuti Kami</p>
+                    <div class="flex justify-center md:justify-end gap-4">
+                        <a href="https://www.instagram.com/bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="Instagram Bonbon">
+                            <img src="images/instagram.jpg" alt="Instagram Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                        </a>
+
+                        <a href="https://www.tiktok.com/@bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="TikTok Bonbon">
+                            <img src="images/tiktok.jpg" alt="TikTok Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                        </a>
+
+                        <a href="https://wa.me/6282155358684" aria-label="WhatsApp Bonbon" target="_blank" rel="noopener noreferrer">
+                            <img src="images/whatsapp.jpg" alt="WhatsApp Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-xs text-gray-600 mt-4">&copy; 2025 – BONBON. ALL RIGHTS RESERVED</div>
+        </footer>
     </section>
 
     <?php if ($is_logged_in && $_SESSION['role'] === 'pengunjung' && $user_ulasan_id): ?>

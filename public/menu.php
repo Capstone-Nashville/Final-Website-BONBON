@@ -97,7 +97,7 @@ function format_rupiah($angka) {
                     $id = pathinfo($file, PATHINFO_FILENAME);
                     $classes = "text-red-600 font-bold hover:text-red-800";
                     if ($id === 'menu') {
-                        $classes .= " active-link"; // Tandai menu ini aktif di halaman menu.php
+                        $classes .= " active-link";
                     }
                 ?>
                     <a href="<?= $file ?>" id="<?= $id ?>" class="<?= $classes ?>"><?= $label ?></a>
@@ -126,9 +126,11 @@ function format_rupiah($angka) {
     </header>
 
     <!-- Navigasi Kategori -->
-    <nav class="category-nav text-white text-lg font-bold">
+    <nav id="daftar-menu" class="category-nav text-white text-lg font-bold">
         <?php foreach ($kategori_list as $key => $label): ?>
-            <a href="menu.php?kategori=<?= $key ?>" class="category-link <?= $kategori_aktif === $key ? 'active' : '' ?>">
+            <a href="menu.php?kategori=<?= $key?>#daftar-menu" 
+            class="category-link <?= $kategori_aktif === $key ? 'active' : '' ?>"
+            <?= $kategori_aktif === $key ? 'aria-current="page"' : '' ?>>
                 <?= $label ?>
             </a>
         <?php endforeach; ?>

@@ -3,26 +3,21 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <title>Login | BONBON</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/loading.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
 <body>
-    <div id="loading-overlay" class="fixed inset-0 flex items-center justify-center bg-white z-50">
-        <div class="spinner-container"></div>
-        <img src="images/logo.png" alt="BONBON Logo" class="w-32 h-32 object-contain z-10 ml-4">
-    </div>
 
-    <div class="flex h-screen">
+    <div id="content" class="flex h-screen">
         <div class="bg-white flex flex-col justify-center items-center w-1/3 h-full relative">
             <div class="absolute inset-0">
                 <img src="images/fotobonbon.svg" alt="BONBON Logo" class="w-full h-full object-cover">
@@ -49,7 +44,7 @@ session_start();
                     </div>
                     <div class="relative">
                         <label for="password" class="block text-sm font-medium text-gray-600">Kata Sandi</label>
-                        <input type="password" id="password" name="password" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan kata sandi anda" required>
+                        <input type="password" id="password" name="password" class="w-full p-3 pr-20 border border-gray-300 rounded-md mt-2" placeholder="Masukkan kata sandi anda" required>
                         <button type="button" onclick="togglePassword('password', this)"
                             class="absolute right-3 top-[63%] transform -translate-y-1/2 text-gray-500 hover:text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -90,37 +85,6 @@ session_start();
             btn.classList.remove('text-red-600');
         }
     }
-
-                // Tangkap klik link dan tampilkan loading sebelum pindah
-        document.addEventListener('DOMContentLoaded', () => {
-            const loadingOverlay = document.getElementById('loading-overlay');
-            const content = document.getElementById('content');
-
-            // Saat halaman siap, sembunyikan loading dan tampilkan konten
-            loadingOverlay.style.display = 'none';
-            content.style.display = 'block';
-
-            // Tangkap klik link untuk tampilkan loading dan delay sebelum pindah
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-
-                // Abaikan link anchor kosong, javascript:void, atau tidak ada href
-                if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
-
-                e.preventDefault();
-
-                // Tampilkan loading, sembunyikan konten
-                loadingOverlay.style.display = 'flex';
-                content.style.display = 'none';
-
-                // Delay 1 detik lalu pindah halaman
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 1000);
-            });
-            });
-        });
     </script>
 </body>
 </html>

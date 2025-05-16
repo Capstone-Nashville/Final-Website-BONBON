@@ -33,12 +33,12 @@ if (!$lokasi_outlet) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lokasi BONBON - Es Krim, Teh, dan Kopi</title>
+    <title>Edit Lokasi BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -132,7 +132,7 @@ if (!$lokasi_outlet) {
         </section>
     </main>
     
-    <!-- Transisi Wave Image dengan background -->
+    <!-- Transisi-->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>
