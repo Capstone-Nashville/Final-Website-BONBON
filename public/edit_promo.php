@@ -17,7 +17,7 @@ if (isset($_SESSION['flash_message'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -43,14 +43,13 @@ if (isset($_SESSION['flash_message'])) {
     <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
-            <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
                 <a href="dashboard.php" id="dashboard" class="text-red-600 font-bold hover:text-red-800">Dashboard</a>
                 <a href="edit_promo.php" id="edit_promo" class="text-red-600 font-bold hover:text-red-800">Edit Promosi</a>
                 <a href="edit_menu.php" id="edit_menu" class="text-red-600 font-bold hover:text-red-800">Edit Menu</a>
                 <a href="edit_lokasi.php" id="edit_lokasi" class="text-red-600 font-bold hover:text-red-800">Edit Lokasi</a>
             </div>
-            <!-- Right-aligned Login Button -->
+
             <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
         </div>
     </nav>
@@ -66,7 +65,6 @@ if (isset($_SESSION['flash_message'])) {
         <h2 class="text-4xl font-bold">Edit Promosi</h2>
     </section>
 
-    <!-- Card Container (flex with gap and centered) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12 px-40">
         <?php while ($row = mysqli_fetch_assoc($promo)): ?>
             <div class="bg-white shadow-lg rounded-xl p-4 flex flex-col items-center">
@@ -87,13 +85,12 @@ if (isset($_SESSION['flash_message'])) {
         <a href="form_tambah_promo.php" method="POST" class="bg-white text-red-600 font-semibold py-4 px-8 rounded-full shadow-xl hover:scale-105"> + Tambah Promosi</a>
     </div>
 
-    <!-- Transisi Wave Image dengan background -->
+    <!-- Transisi-->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>
     <script>
         const currentUrl = window.location.pathname;
-        // Find the link corresponding to the current page and add the 'active-link' class
         if (currentUrl.includes('dashboard.php')) {
             document.getElementById('dashboard').classList.add('active-link');
         } else if (currentUrl.includes('edit_promo.php')) {

@@ -30,7 +30,7 @@ if (isset($_SESSION['flash_message'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -70,7 +70,7 @@ if (isset($_SESSION['flash_message'])) {
         }
 
         .active-link {
-            outline: 3px solid #d3293b; /* Outline warna merah */
+            outline: 3px solid #d3293b;
             outline-offset: 6px;
             border-radius: 40%;
         }
@@ -78,7 +78,6 @@ if (isset($_SESSION['flash_message'])) {
 </head>
 
 <body class="bg-red-600">
-
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">

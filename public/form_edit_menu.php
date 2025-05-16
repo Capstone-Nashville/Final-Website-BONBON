@@ -31,7 +31,7 @@ if (!$menu) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -39,6 +39,7 @@ if (!$menu) {
     <title>Edit Menu BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -46,7 +47,7 @@ if (!$menu) {
         }
 
         .active-link {
-            outline: 3px solid #d3293b; /* Outline warna merah */
+            outline: 3px solid #d3293b;
             outline-offset: 6px;
             border-radius: 40%;
         }
@@ -57,14 +58,13 @@ if (!$menu) {
     <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
-            <!-- Centered Navbar Items -->
             <div class="flex-1 flex justify-center space-x-12">
                 <a href="dashboard.php" id="dashboard" class="text-red-600 font-bold hover:text-red-800">Dashboard</a>
                 <a href="edit_promo.php" id="edit_promo" class="text-red-600 font-bold hover:text-red-800">Edit Promosi</a>
                 <a href="edit_menu.php" id="edit_menu" class="text-red-600 font-bold hover:text-red-800">Edit Menu</a>
                 <a href="edit_lokasi.php" id="edit_lokasi" class="text-red-600 font-bold hover:text-red-800">Edit Lokasi</a>
             </div>
-            <!-- Right-aligned Login Button -->
+
             <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
         </div>
     </nav>
@@ -139,11 +139,10 @@ if (!$menu) {
         </section>
     </main>
 
-    <!-- Transisi Wave Image dengan background -->
+    <!-- Transisi -->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>
     
 </body>
-
 </html>

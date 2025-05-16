@@ -4,7 +4,7 @@ require_once __DIR__ . '/../api/config/csrf.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,8 @@ require_once __DIR__ . '/../api/config/csrf.php';
     </style>
 </head>
 <body>
-    <div class="flex h-screen">
+
+    <div id="content" class="flex h-screen">
         <div class="bg-white flex flex-col justify-center items-center w-1/3 h-full relative">
             <div class="absolute inset-0">
                 <img src="images/fotobonbon.svg" alt="BONBON Logo" class="w-full h-full object-cover">
@@ -45,7 +46,7 @@ require_once __DIR__ . '/../api/config/csrf.php';
                     </div>
                     <div class="relative">
                         <label for="password" class="block text-sm font-medium text-gray-600">Kata Sandi</label>
-                        <input type="password" id="password" name="password" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan kata sandi anda" required>
+                        <input type="password" id="password" name="password" class="w-full p-3 pr-20 border border-gray-300 rounded-md mt-2" placeholder="Masukkan kata sandi anda" required>
                         <button type="button" onclick="togglePassword('password', this)"
                             class="absolute right-3 top-[63%] transform -translate-y-1/2 text-gray-500 hover:text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"

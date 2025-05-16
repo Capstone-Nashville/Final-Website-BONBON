@@ -4,19 +4,19 @@ $is_logged_in = isset($_SESSION['id_user']);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/logo-bonbon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/logo-bonbon.png" type="image/png" />
     <title>Franchisee BONBON</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/loading.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
-
         .active-link {
             outline: 3px solid #d3293b; /* Outline warna merah */
             outline-offset: 6px;
@@ -25,173 +25,204 @@ $is_logged_in = isset($_SESSION['id_user']);
     </style>
 </head>
 <body class="bg-white">
-
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="flex justify-between items-center p-4">
-            <div class="flex-1 flex justify-center space-x-12">
-                <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
-                <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>
-                <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
-                <a href="lokasi.php" id="Lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>                       
-                <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>                 
-            </div>
-            <?php if ($is_logged_in): ?>
-                <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
-            <?php else: ?>
-                <a href="login.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
-            <?php endif; ?>
-        </div>
-    </nav>
-
-    <main class="p-0">
-        <header class="relative">
-            <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto">
-        </header>
-
-    <section class="relative bg-white text-red-600 px-32 py-16">
-        <div class="flex justify-between items-center">
-            <div class="w-60 overflow-hidden rounded-xl">
-                <img src="images/owner.jpg" alt="Bonbon Logo" class="w-full h-auto object-cover">
-            </div>
-            <div class="w-2/3 text-left px-8">
-                <h1 class="text-4xl md:text-4xl font-bold mb-4">Bergabunglah Menjadi Franchisee BONBON!</h1>
-                <p class="text-lg md:text-xl">Rasakan peluang bisnis yang menjanjikan bersama BONBON — brand yang menghadirkan es krim, teh, dan kopi favorit dalam cita rasa manis, segar, dan nikmat yang disukai banyak orang. Dengan beragam pilihan menu dari es krim klasik hingga kopi kekinian yang telah disesuaikan dengan selera masyarakat Indonesia, BONBON siap menjadi destinasi favorit pelanggan Anda. Kini saatnya Anda ikut menjadi bagian dari perjalanan manis kami!</p>
-            </div>
-        </div>
-    </section>
-
-
-    <div class="w-full overflow-hidden bg-red-600">
-        <img src="images/wavebonbon.png" alt="Transisi" class="w-full h-auto -mt-1">
+    <div id="loading-overlay" style="display:none;" class="fixed inset-0 flex items-center justify-center bg-white z-50">
+        <div class="spinner-container"></div>
+        <img src="images/logo.png" alt="BONBON Logo" class="w-20 h-20 object-contain ml-4" />
     </div>
 
-    <section id="keuntungan" class="bg-red-600 py-16 px-8 md:px-32">
-            <h2 class="text-3xl font-semibold text-center text-white mb-12">Keuntungan Menjadi Franchisee BONBON</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                    <div class="mb-4">
-                        <img src="images/team.png" alt="Manajemen" class="w-32 h-32 mx-auto">
-                    </div>
-                    <h3 class="text-xl font-semibold text-red-600 mb-2">Pelatihan dan Manajemen Terstandarisasi </h3>
-                    <p class="text-sm text-gray-700">Kami menyediakan pelatihan profesional bagi karyawan serta sistem manajemen dan tata kelola usaha yang telah terverifikasi dan distandarisasi. Ini mencakup pengelolaan stok, pelayanan pelanggan, hingga pencatatan keuangan.</p>
+    <div id="content">
+        <nav class="bg-white shadow-md sticky top-0 z-50">
+            <div class="flex justify-between items-center p-4">
+                <div class="flex-1 flex justify-center space-x-12">
+                    <a href="beranda.php" id="home" class="text-red-600 font-bold hover:text-red-800">Beranda</a>
+                    <a href="franchise.php" id="franchise" class="text-red-600 font-bold hover:text-red-800">Franchise</a>
+                    <a href="menu.php" id="menu" class="text-red-600 font-bold hover:text-red-800">Menu</a>
+                    <a href="lokasi.php" id="lokasi" class="text-red-600 font-bold hover:text-red-800">Lokasi</a>
+                    <a href="ulasan.php" id="ulasan" class="text-red-600 font-bold hover:text-red-800">Ulasan</a>
                 </div>
-                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                    <div class="mb-4">
-                        <img src="images/consulting.png" alt="Keuntungan 2" class="w-32 h-32 mx-auto">
+                <?php if ($is_logged_in): ?>
+                    <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
+                <?php else: ?>
+                    <a href="login.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Login</a>
+                <?php endif; ?>
+            </div>
+        </nav>
+
+        <main class="p-0">
+            <header class="relative">
+                <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto" />
+            </header>
+
+            <section class="relative bg-white text-red-600 px-32 py-16">
+                <div class="flex justify-between items-center">
+                    <div class="w-60 overflow-hidden rounded-xl">
+                        <img src="images/owner.jpg" alt="Foto Owner BONBON" class="w-full h-auto object-cover" />
                     </div>
-                    <h3 class="text-xl font-semibold text-red-600 mb-2">Konsultasi Gratis dan Pendampingan Bisnis</h3>
-                    <p class="text-sm text-gray-700">Tim BONBON menyediakan konsultasi gratis yang bisa diakses kapan saja. Mulai dari strategi pemasaran, manajemen usaha, hingga troubleshooting operasional.</p>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg p-6 text-center">
-                    <div class="mb-4">
-                        <img src="images/social-media.png" alt="Keuntungan 3" class="w-32 h-32 mx-auto">
+                    <div class="w-2/3 text-left px-8">
+                        <h1 class="text-4xl md:text-4xl font-bold mb-4">Bergabunglah Menjadi Franchisee Bonbon!</h1>
+                        <p class="text-lg md:text-xl">
+                            BONBON hadir untuk memberikan pengalaman tak terlupakan melalui berbagai pilihan es krim, teh, dan kopi terbaik yang menggabungkan rasa manis, segar, dan nikmat dalam satu tempat.
+                            Bonbon menawarkan menu, mulai dari es krim klasik hingga varian kopi kekinian, semua disajikan dengan cita rasa yang telah disesuaikan dengan selera masyarakat Indonesia.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold text-red-600 mb-2">Pengelolaan Media Sosial untuk Promosi Digital</h3>
-                    <p class="text-sm text-gray-700">Kami juga membantu franchisee dalam pengelolaan media sosial, termasuk pelatihan pembuatan konten dan strategi promosi digital.</p>
                 </div>
-            </div>
-    </section>
+            </section>
 
-        <!-- Transisi Wave Image dengan background -->
-        <div class="w-full overflow-hidden bg-red-600">
-            <img src="images/roundedbonbon.png" alt="Transisi" class="w-full h-auto -mt-1">
-        </div>
-
-    <!-- Call to Action (CTA) -->
-    <section class="py-4 px-20 bg-white text-center">
-        <div class="flex justify-between items-center">
-            <!-- Gambar di kiri -->
-            <div class="w-1/3 py-1 px-6">
-                <img src="images/headermenu.svg" alt="Header Menu" class="w-full h-auto">
+            <div class="w-full overflow-hidden bg-red-600">
+                <img src="images/wavebonbon.png" alt="Transisi" class="w-full h-auto -mt-1" />
             </div>
-            <!-- Teks dan Tombol di kanan -->
-            <div class="w-2/3 text-left">
-                <h2 class="text-3xl font-semibold text-red-600 mb-6">Bergabunglah Sekarang dan Mulai Bisnis Anda!</h2>
-                <p class="text-lg mb-8 text-red-600">Jangan lewatkan kesempatan untuk bekerja sama dengan BONBON, menjadi franchisee kami dan nikmati keuntungan yang luar biasa.</p>
-                <a href="tel:+6282155358684"" class="bg-red-600 text-white font-bold px-8 py-3 rounded-full hover:bg-red-800 transition">Daftar Sekarang</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Transisi Wave Image dengan background -->
-    <div class="w-full overflow-hidden bg-red-600">
-        <img src="images/roundedbonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
+            <section id="keuntungan" class="bg-red-600 py-16 px-8 md:px-32">
+                <h2 class="text-3xl font-semibold text-center text-white mb-12">Keuntungan Menjadi Franchise Bonbon</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <img src="images/team.png" alt="Manajemen" class="w-32 h-32 mx-auto" />
+                        </div>
+                        <h3 class="text-xl font-semibold text-red-600 mb-2">Pelatihan dan Manajemen Terstandarisasi</h3>
+                        <p class="text-sm text-gray-700">
+                            Kami menyediakan pelatihan profesional bagi karyawan serta sistem manajemen dan tata kelola usaha yang telah terverifikasi dan distandarisasi.
+                            Ini mencakup pengelolaan stok, pelayanan pelanggan, hingga pencatatan keuangan.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <img src="images/consulting.png" alt="Konsultasi Gratis" class="w-32 h-32 mx-auto" />
+                        </div>
+                        <h3 class="text-xl font-semibold text-red-600 mb-2">Konsultasi Gratis dan Pendampingan Bisnis</h3>
+                        <p class="text-sm text-gray-700">
+                            Tim Bonbon menyediakan konsultasi gratis yang bisa diakses kapan saja.
+                            Mulai dari strategi pemasaran, manajemen usaha, hingga troubleshooting operasional.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white shadow-lg rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <img src="images/social-media.png" alt="Promosi Digital" class="w-32 h-32 mx-auto" />
+                        </div>
+                        <h3 class="text-xl font-semibold text-red-600 mb-2">Pengelolaan Media Sosial untuk Promosi Digital</h3>
+                        <p class="text-sm text-gray-700">
+                            Kami juga membantu franchisee dalam pengelolaan media sosial, termasuk pelatihan pembuatan konten dan strategi promosi digital.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="w-full overflow-hidden bg-red-600">
+                <img src="images/roundedbonbon.png" alt="Transisi" class="w-full h-auto -mt-1" />
+            </div>
+
+            <section class="py-4 px-20 bg-white text-center">
+                <div class="flex justify-between items-center">
+                    <div class="w-1/3 py-1 px-6">
+                        <img src="images/headermenu.svg" alt="Header Menu" class="w-full h-auto" />
+                    </div>
+                    <div class="w-2/3 text-left">
+                        <h2 class="text-3xl font-semibold text-red-600 mb-6">Bergabunglah Sekarang dan Mulai Bisnis Anda!</h2>
+                        <p class="text-lg mb-8 text-red-600">
+                            Jangan lewatkan kesempatan untuk bekerja sama dengan BONBON, menjadi franchisee kami dan nikmati keuntungan yang luar biasa.
+                        </p>
+                        <a href="https://wa.me/6282155358684" id= "contact" class="bg-red-600 text-white font-bold px-8 py-3 rounded-full hover:bg-red-800 transition">
+                            Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="w-full overflow-hidden bg-red-600">
+                <img src="images/roundedbonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1" />
+            </div>
+
+            <div class="w-full overflow-hidden bg-red-600">
+                <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1" />
+            </div>
+
+            <footer class="bg-white text-black py-6 px-32">
+                <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 border-b border-gray-200 pb-6">
+                    <div class="flex items-center gap-6">
+                        <img src="images/logo-bonbon.png" alt="BONBON Logo" class="w-24 h-24 object-contain" />
+                        <div class="text-left text-sm">
+                            <p class="font-semibold">PT. Fren & Co Group</p>
+                            <p>Jl. Sirad Salman No. 6A, Air Hitam,</p>
+                            <p>Samarinda Ulu, 75124</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-right">
+                        <p class="text-sm font-semibold mb-2">Ikuti Kami</p>
+                        <div class="flex justify-center md:justify-end gap-4">
+                            <a href="https://www.instagram.com/bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="Instagram Bonbon">
+                                <img src="images/instagram.jpg" alt="Instagram Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                            </a>
+
+                            <a href="https://www.tiktok.com/@bonbon.smr" target="_blank" rel="noopener noreferrer" aria-label="TikTok Bonbon">
+                                <img src="images/tiktok.jpg" alt="TikTok Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                            </a>
+
+                            <a href="https://wa.me/6282155358684" aria-label="WhatsApp Bonbon" target="_blank" rel="noopener noreferrer">
+                                <img src="images/whatsapp.jpg" alt="WhatsApp Bonbon" class="w-12 h-12 object-contain hover:brightness-90 transition" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center text-xs text-gray-600 mt-4">&copy; 2025 – BONBON. ALL RIGHTS RESERVED</div>
+            </footer>
+        </main>
     </div>
-
-    <!-- Transisi Wave Image dengan background -->
-    <div class="w-full overflow-hidden bg-red-600">
-        <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
-    </div>
-
-    <!-- Footer Section -->
-    <footer class="bg-white text-black py-6 px-32">
-        <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8 border-b border-gray-200 pb-6">
-            <!-- Logo dan Alamat -->
-            <div class="flex items-center gap-6">
-                <!-- Logo -->
-                <img src="images/logo-bonbon.png" alt="BONBON Logo" class="w-24 h-24 object-contain">
-                
-                <!-- Alamat -->
-                <div class="text-left text-sm">
-                    <p class="font-semibold">PT. Fren & Co Group</p>
-                    <p>Jl. Sirad Salman No. 6A, Air Hitam,</p>
-                    <p>Samarinda Ulu, 75124</p>
-                </div>
-            </div>
-        
-                <!-- Sosial Media -->
-            <div class="text-center md:text-right">
-                <p class="text-sm font-semibold mb-2">Ikuti Kami</p>
-                <div class="flex justify-center md:justify-end gap-4">
-                    <!-- Ikon Instagram -->
-                    <a href="https://www.instagram.com/bonbon.smr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-red-600 hover:text-red-800 transition">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M7.5 3h9A4.5 4.5 0 0121 7.5v9A4.5 4.5 0 0116.5 21h-9A4.5 4.5 0 013 16.5v-9A4.5 4.5 0 017.5 3z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25a3.75 3.75 0 11-6 0 3.75 3.75 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75h.008v.008h-.008z" />
-                        </svg>
-                    </a>
-                    <!-- TikTok Icon SVG -->
-                    <a href="https://www.tiktok.com/@bonbon.smr?is_from_webapp=1&sender_device=pc" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-12 h-12 text-red-600 fill-current">
-                            <path d="M41,15.4c-3.1,0-6-1-8.4-2.7v14.1c0,7.3-5.9,13.2-13.2,13.2S6.2,34.1,6.2,26.8s5.9-13.2,13.2-13.2c1,0,2,.1,3,.5v5.5
-                            c-1-.5-2-.7-3-.7c-4.3,0-7.8,3.5-7.8,7.8s3.5,7.8,7.8,7.8s7.8-3.5,7.8-7.8V4h5.6c0.2,3.1,1.9,5.9,4.6,7.4C37.8,13.6,39.4,14.3,41,15.4z"/>
-                        </svg>
-                    </a>
-                    <!-- Ikon WA -->
-                    <a href="tel:+6282155358684" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-12 h-12 text-red-600 fill-current">
-                            <path d="M16.003 3C9.383 3 4 8.383 4 15.003c0 2.522.748 4.867 2.021 6.83L4 29l7.42-2.02A11.94 11.94 0 0016.003 27C22.623 27 28 21.618 28 15S22.623 3 16.003 3zm0 2c5.513 0 10 4.486 10 10 0 5.513-4.487 10-10 10a9.94 9.94 0 01-5.076-1.378l-.356-.215-4.434 1.208 1.218-4.366-.224-.36A9.94 9.94 0 016.003 15c0-5.514 4.486-10 10-10zm4.59 5.62c-.31-.154-1.826-.9-2.11-.996-.283-.095-.49-.143-.697.154-.208.296-.797.997-.978 1.202-.18.207-.36.233-.67.078-.31-.156-1.31-.483-2.49-1.54-.92-.82-1.54-1.83-1.72-2.14-.18-.31-.02-.48.135-.634.14-.14.31-.36.467-.54.154-.18.207-.31.31-.517.103-.208.05-.39-.026-.543-.077-.154-.697-1.678-.954-2.31-.25-.62-.5-.537-.697-.547h-.596c-.206 0-.538.077-.82.38-.282.31-1.074 1.05-1.074 2.55s1.1 2.96 1.253 3.164c.154.207 2.14 3.27 5.186 4.59.724.312 1.29.498 1.733.637.728.232 1.39.2 1.916.12.585-.09 1.82-.744 2.08-1.464.256-.72.256-1.336.18-1.464-.078-.128-.28-.207-.585-.36z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="text-center text-xs text-gray-600 mt-4">
-            &copy; 2025 – BONBON. ALL RIGHTS RESERVED
-        </div>
-    </footer>
 
     <script>
-        // Get the current URL
-        const currentUrl = window.location.pathname;
-        
-        // Find the link corresponding to the current page and add the 'active-link' class
-        if (currentUrl.includes('beranda.php')) {
-            document.getElementById('home').classList.add('active-link');
-        } else if (currentUrl.includes('franchise.php')) {
-            document.getElementById('franchise').classList.add('active-link');
-        } else if (currentUrl.includes('menu.php')) {
-            document.getElementById('menu').classList.add('active-link');
-        } else if (currentUrl.includes('lokasi.php')) {
-            document.getElementById('lokasi').classList.add('active-link');
-        } else if (currentUrl.includes('ulasan.php')) {
-            document.getElementById('ulasan').classList.add('active-link');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const content = document.getElementById('content');
+
+        const pageMap = {
+            'beranda.php': 'home',
+            'franchise.php': 'franchise',
+            'menu.php': 'menu',
+            'lokasi.php': 'lokasi',
+            'ulasan.php': 'ulasan',
+        };
+        const currentPage = window.location.pathname.split('/').pop();
+
+        if (pageMap[currentPage]) {
+            const activeLink = document.getElementById(pageMap[currentPage]);
+            if (activeLink) activeLink.classList.add('active-link');
         }
+
+        document.querySelector('#contact').addEventListener('click', function(e) {
+            e.preventDefault();
+            loadingOverlay.style.display = 'flex';
+            content.style.display = 'none'; 
+
+            const url = this.href;
+            setTimeout(() => {
+                window.location.href = url; 
+            }, 1000);
+            });
+
+        // Event pageshow untuk handle halaman yang dimuat dari cache
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                // Jika halaman dimuat dari bfcache (back-forward cache), langsung tampilkan konten tanpa loading
+                loadingOverlay.style.display = 'none';
+                loadingOverlay.classList.remove('flex');
+                content.style.display = 'block';
+            } else {
+                loadingOverlay.style.display = 'flex';
+                loadingOverlay.classList.add('flex');
+                content.style.display = 'none';
+
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                    loadingOverlay.classList.remove('flex');
+                    content.style.display = 'block';
+                }, 1000);
+            }
+        });
     </script>
 </body>
 </html>

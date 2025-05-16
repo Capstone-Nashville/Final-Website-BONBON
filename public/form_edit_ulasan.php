@@ -32,14 +32,15 @@ $data = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Menu BONBON</title>
+    <title>Edit Ulasan BONBON</title>
     <link rel="icon" href="images/logo-bonbon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -129,16 +130,13 @@ $data = $result->fetch_assoc();
         </div>
     </section>
         
-    <!-- Transisi Wave Image dengan background -->
+    <!-- Transisi -->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>
     
     <script>
-        // Get the current URL
         const currentUrl = window.location.pathname;
-
-        // Find the link corresponding to the current page and add the 'active-link' class
         if (currentUrl.includes('beranda.php')) {
             document.getElementById('home').classList.add('active-link');
         } else if (currentUrl.includes('franchise.php')) {
