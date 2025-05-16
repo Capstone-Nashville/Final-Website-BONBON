@@ -45,7 +45,6 @@ if (isset($_SESSION['flash_message'])) {
                 <a href="edit_menu.php" id="edit_menu" class="text-red-600 font-bold hover:text-red-800">Edit Menu</a>
                 <a href="edit_lokasi.php" id="edit_lokasi" class="text-red-600 font-bold hover:text-red-800">Edit Lokasi</a>   
             </div>
-
             <a href="logout.php" class="bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-800">Logout</a>
         </div>
     </nav>
@@ -59,7 +58,6 @@ if (isset($_SESSION['flash_message'])) {
     loading="lazy"
     ></iframe>
     <script>
-        // Highlight link navigasi yang aktif
         const pageMap = {
             'beranda.php': 'home',
             'franchise.php': 'franchise',

@@ -70,9 +70,7 @@ if ($is_logged_in) {
         </div>
     </nav>
 
-    <!-- Main content -->
     <main class="p-0">
-        <!-- Banner Image -->
         <header class="relative">
             <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto bg-red-600">
         </header>
@@ -150,7 +148,6 @@ if ($is_logged_in) {
     <?php endif; ?>
 
     <script>
-        // Highlight navigasi yang aktif berdasarkan halaman
         const pageMap = {
             'beranda.php': 'home',
             'franchise.php': 'franchise',

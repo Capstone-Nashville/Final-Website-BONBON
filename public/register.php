@@ -26,7 +26,6 @@ if (isset($_SESSION['id_user'])) {
     </style>
 </head>
 <body class="flex min-h-screen bg-red-600">
-    <!-- Left Section -->
     <div class="bg-white flex flex-col justify-center items-center w-1/3 relative min-h-screen">
         <div class="absolute inset-0">
             <img src="images/fotobonbon.svg" alt="BONBON Logo" class="w-full h-full object-cover">

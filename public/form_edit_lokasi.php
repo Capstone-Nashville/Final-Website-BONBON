@@ -133,7 +133,6 @@ if (!$lokasi_outlet) {
         </section>
     </main>
     
-    <!-- Transisi-->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>

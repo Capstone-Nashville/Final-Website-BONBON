@@ -55,7 +55,6 @@ if (!$menu) {
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">
@@ -69,20 +68,16 @@ if (!$menu) {
         </div>
     </nav>
 
-    <!-- Main content -->
     <main class="p-0 w-full">
 
-        <!-- Banner Image -->
         <header class="relative w-full overflow-hidden bg-red-600">
             <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto">
         </header>
 
-        <!-- Lokasi Section -->
         <section class="px-4 text-center items-center justify-center text-white bg-red-600">
             <h2 class="text-4xl font-bold">Edit Menu</h2>
         </section>
 
-        <!-- Form Section -->
         <section class="bg-red-600 justify-center w-full">
             <div class="flex justify-center items-center w-full p-8">
                 <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-4xl">
@@ -139,7 +134,6 @@ if (!$menu) {
         </section>
     </main>
 
-    <!-- Transisi -->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>

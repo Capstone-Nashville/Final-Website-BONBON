@@ -12,7 +12,7 @@ if (isset($_SESSION['flash_message'])) {
     unset($_SESSION['flash_message']);
 }
 
-$promo = mysqli_query($conn, "SELECT * FROM promo");
+$promo_result = mysqli_query($conn, "SELECT * FROM promo");
 
 $ulasan_result = mysqli_query($conn, 
     "SELECT ru.rating, ru.ulasan, u.email 
@@ -47,8 +47,7 @@ if ($is_logged_in) {
     <link rel="stylesheet" href="css/loading.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    />
+        rel="stylesheet"/>
     <style>
     body {
         font-family: 'Poppins', sans-serif;
@@ -130,7 +129,7 @@ if ($is_logged_in) {
                     <div class="flex transition-transform duration-500" id="carousel">
                         <?php while ($row = mysqli_fetch_assoc($promo_result)): ?>
                             <div class="flex-shrink-0 w-full flex items-center justify-center">
-                                <a href="<?= htmlspecialchars($row['link_postingan']) ?>" target="_blank" rel="noopener noreferrer" 
+                                <a href="<?= htmlspecialchars($row['link_postingan'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer" 
                                 class="flex items-center justify-center w-1/2 mx-auto">
                                     <img src="images_promo/<?= htmlspecialchars($row['gambar_promo']) ?>" alt="Promo" 
                                         class="rounded-lg w-full h-auto object-contain shadow-xl" />
@@ -182,11 +181,10 @@ if ($is_logged_in) {
             <section class="bg-red-600 text-white text-center">
                 <h2 class="text-3xl font-bold py-4">Menu</h2>
                 <p class="text-sm mt-4">
-                    Nikmati Setiap Momen Manis dengan Bonbon Ice Cream, Tea, and Coffee. Temukan Menu Favorit Anda dan Rasakan Kenikmatan!
+                    Nikmati Setiap Momen Manis dengan BONBON Ice Cream, Tea, and Coffee. Temukan Menu Favorit Anda dan Rasakan Kenikmatan!
                 </p>
                 <section id="daftar-menu" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-8 px-40">
                     <?php
-                    // Menu kategori array untuk menghindari duplikasi kode
                     $menus = [
                         ['kategori' => 'signature', 'img' => 'summer.svg', 'title' => 'Signature'],
                         ['kategori' => 'float', 'img' => 'mango.svg', 'title' => 'Float'],
@@ -214,7 +212,7 @@ if ($is_logged_in) {
                         <?php while ($row = mysqli_fetch_assoc($ulasan_result)) : ?>
                             <a href="ulasan.php" class="w-[300px] bg-white p-6 rounded-lg shadow-lg text-left shrink-0" tabindex="0">
                                 <h3 class="text-xl font-bold text-red-600">
-                                    <?= htmlspecialchars($row['email']) ?>
+                                    <?= htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?>
                                 </h3>
                                 <div style="color: #ffc107;" class="text-lg mt-2" aria-label="Rating: <?= (int)$row['rating'] ?> out of 5 stars">
                                     <?php
@@ -223,7 +221,7 @@ if ($is_logged_in) {
                                     ?>
                                 </div>
                                 <p class="text-sm text-gray-700 mt-3">
-                                    <?= htmlspecialchars($row['ulasan']) ?>
+                                    <?= htmlspecialchars($row['ulasan'], ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </a>
                         <?php endwhile; ?>
@@ -238,7 +236,7 @@ if ($is_logged_in) {
             </section>
 
             <?php if ($is_logged_in && $user_role === 'pengunjung' && $user_ulasan_id): ?>
-                <form action="form_edit_ulasan.php" method="POST" class="fixed bottom-6 right-10">
+                <form action="form_edit_ulasan.php" method="GET" class="fixed bottom-6 right-10">
                     <input type="hidden" name="id" value="<?= $user_ulasan_id ?>" />
                     <button type="submit" class="bg-white text-red-600 p-4 rounded-full shadow-xl hover:scale-105 transition duration-300">
                         <span class="text-xl font-bold">+ Edit Ulasan</span>
@@ -296,7 +294,6 @@ if ($is_logged_in) {
         </div>
 
         <script>
-            // Promo Carousel
             let currentIndex = 0;
 
             function moveCarousel(direction) {
@@ -325,7 +322,6 @@ if ($is_logged_in) {
 
             updateCarouselDots();
 
-            // Testimonial Carousel
             let testimonialIndex = 0;
 
             function moveTestimonial(direction) {
@@ -344,7 +340,6 @@ if ($is_logged_in) {
                 carousel.style.transform = `translateX(${offset}px)`;
             }
 
-            // Highlight link navigasi yang aktif
             const pageMap = {
                 'beranda.php': 'home',
                 'franchise.php': 'franchise',
@@ -359,7 +354,6 @@ if ($is_logged_in) {
                 if (activeLink) activeLink.classList.add('active-link');
             }
 
-            // Loading overlay
             const loadingOverlay = document.getElementById('loading-overlay');
             const content = document.getElementById('content');
 
@@ -389,24 +383,19 @@ if ($is_logged_in) {
                 });
             }
 
-            // Event pageshow untuk handle halaman yang dimuat dari cache
-            window.addEventListener('pageshow', (event) => {
-                if (event.persisted) {
-                    // Jika halaman dimuat dari bfcache (back-forward cache), langsung tampilkan konten tanpa loading
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('✅ DOMContentLoaded triggered');
+
+                const loadingOverlay = document.getElementById('loading-overlay');
+                const content = document.getElementById('content');
+
+                console.log('⏳ Menampilkan loading overlay...');
+                setTimeout(() => {
+                    console.log('✅ Loading selesai, menampilkan konten...');
                     loadingOverlay.style.display = 'none';
                     loadingOverlay.classList.remove('flex');
                     content.style.display = 'block';
-                } else {
-                    loadingOverlay.style.display = 'flex';
-                    loadingOverlay.classList.add('flex');
-                    content.style.display = 'none';
-
-                    setTimeout(() => {
-                        loadingOverlay.style.display = 'none';
-                        loadingOverlay.classList.remove('flex');
-                        content.style.display = 'block';
-                    }, 1000);
-                }
+                }, 1000);
             });
         </script>
     </body>

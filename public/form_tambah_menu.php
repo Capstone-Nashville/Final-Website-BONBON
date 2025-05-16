@@ -35,7 +35,6 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">

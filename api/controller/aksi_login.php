@@ -47,8 +47,6 @@ if ($user = mysqli_fetch_assoc($result)) {
         $_SESSION['role'] = $user['role'];
         $_SESSION['login_attempts'] = 0;
 
-        $_SESSION['flash_message'] = 'Login berhasil sebagai ' . htmlspecialchars(ucfirst($user['role']), ENT_QUOTES, 'UTF-8');
-
         if ($user['role'] === 'admin') {
             header("Location: ../../public/dashboard.php");
         } else {

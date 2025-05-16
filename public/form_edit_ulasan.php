@@ -56,7 +56,6 @@ $data = $result->fetch_assoc();
 </head>
 
 <body>
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">
@@ -74,7 +73,6 @@ $data = $result->fetch_assoc();
         </div>
     </nav>
 
-    <!-- Main content -->
     <main class="p-0">
         <header class="relative">
             <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto bg-red-600">
@@ -85,7 +83,6 @@ $data = $result->fetch_assoc();
         <h2 class="text-4xl font-bold">Tambah Ulasan</h2>
     </section>
 
-    <!-- Testimonial Section -->
     <section class="bg-red-600 justify-center w-full py-10">
         <div class="flex justify-center items-center w-full p-8">
             <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl">
@@ -130,7 +127,6 @@ $data = $result->fetch_assoc();
         </div>
     </section>
         
-    <!-- Transisi -->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1">
     </div>

@@ -6,7 +6,6 @@ require_once __DIR__ . '/../api/config/koneksi.php';
 
 $kategori_aktif = $_GET['kategori'] ?? 'semua';
 
-// List kategori menu
 $kategori_list = [
     "semua" => "Semua",
     "coffee-series" => "Coffee Series",
@@ -17,7 +16,6 @@ $kategori_list = [
     "tea-series" => "Tea Series"
 ];
 
-// Siapkan query sesuai kategori
 if ($kategori_aktif === 'semua') {
     $query = "SELECT * FROM menu ORDER BY kategori, nama_produk";
     $stmt = $conn->prepare($query);
@@ -33,7 +31,6 @@ $menus = $result->fetch_all(MYSQLI_ASSOC);
 
 $is_logged_in = isset($_SESSION['id_user']);
 
-// Fungsi format harga
 function format_rupiah($angka) {
     return 'Rp ' . number_format($angka, 0, ',', '.');
 }
@@ -80,12 +77,10 @@ function format_rupiah($angka) {
 </head>
 
 <body class="bg-red-600">
-    <!-- Navbar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="flex justify-between items-center p-4">
             <div class="flex-1 flex justify-center space-x-12">
                 <?php
-                // Buat menu navbar secara dinamis
                 $navs = [
                     'beranda.php' => 'Beranda',
                     'franchise.php' => 'Franchise',
@@ -112,12 +107,10 @@ function format_rupiah($angka) {
         </div>
     </nav>
 
-    <!-- Banner -->
     <header class="relative w-full overflow-hidden bg-white">
         <img src="images/bannerbonbon.svg" alt="Bonbon Banner" class="w-full h-auto" />
     </header>
 
-    <!-- Judul Menu -->
     <header class="text-center py-16 text-red-600 bg-white">
         <h1 class="text-4xl font-bold">Menu</h1>
         <p class="mt-4 text-xl px-6 md:px-60 py-2">
@@ -125,7 +118,6 @@ function format_rupiah($angka) {
         </p>
     </header>
 
-    <!-- Navigasi Kategori -->
     <nav id="daftar-menu" class="category-nav text-white text-lg font-bold">
         <?php foreach ($kategori_list as $key => $label): ?>
             <a href="menu.php?kategori=<?= $key?>#daftar-menu" 
@@ -136,7 +128,6 @@ function format_rupiah($angka) {
         <?php endforeach; ?>
     </nav>
 
-    <!-- Daftar Menu -->
     <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-12 px-40">
         <?php if (empty($menus)): ?>
             <p class="text-white col-span-full text-center">Belum ada menu di kategori ini.</p>
@@ -155,7 +146,6 @@ function format_rupiah($angka) {
         <?php endif; ?>
     </section>
 
-    <!-- Wave Transisi -->
     <div class="w-full overflow-hidden bg-red-600">
         <img src="images/wavebonbonflip.png" alt="Transisi" class="w-full h-auto -mt-1" />
     </div>
@@ -194,7 +184,6 @@ function format_rupiah($angka) {
     </footer>
 
     <script>
-        // Highlight link navigasi yang aktif
         const pageMap = {
             'beranda.php': 'home',
             'franchise.php': 'franchise',
