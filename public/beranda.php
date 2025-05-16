@@ -294,7 +294,7 @@ if ($is_logged_in) {
             </main>
         </div>
 
-        <script>
+<script>
             // Promo Carousel
             let currentIndex = 0;
 
