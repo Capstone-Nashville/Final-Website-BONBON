@@ -182,10 +182,11 @@ if ($is_logged_in) {
             <section class="bg-red-600 text-white text-center">
                 <h2 class="text-3xl font-bold py-4">Menu</h2>
                 <p class="text-sm mt-4">
-                    Nikmati Setiap Momen Manis dengan BONBON Ice Cream, Tea, and Coffee. Temukan Menu Favorit Anda dan Rasakan Kenikmatan!
+                    Nikmati Setiap Momen Manis dengan Bonbon Ice Cream, Tea, and Coffee. Temukan Menu Favorit Anda dan Rasakan Kenikmatan!
                 </p>
                 <section id="daftar-menu" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 py-8 px-40">
-                    <?php 
+                    <?php
+                    // Menu kategori array untuk menghindari duplikasi kode
                     $menus = [
                         ['kategori' => 'signature', 'img' => 'summer.svg', 'title' => 'Signature'],
                         ['kategori' => 'float', 'img' => 'mango.svg', 'title' => 'Float'],
@@ -294,7 +295,7 @@ if ($is_logged_in) {
             </main>
         </div>
 
-<script>
+        <script>
             // Promo Carousel
             let currentIndex = 0;
 
