@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if ($_SESSION['role'] !== 'pengunjung') {
     echo "<script>alert('❌ Admin dilarang membuat ulasan'); window.location.href='beranda.php';</script>";
@@ -10,7 +11,7 @@ if ($_SESSION['role'] !== 'pengunjung') {
 
 $is_logged_in = isset($_SESSION['id_user']);
 
-$id_ulasan = $_POST['id'] ?? null;
+$id_ulasan = $_GET['id'] ?? null;
 $id_user = $_SESSION['id_user'];
 
 if (!$id_ulasan) {
@@ -87,8 +88,18 @@ $data = $result->fetch_assoc();
     <section class="bg-red-600 justify-center w-full py-10">
         <div class="flex justify-center items-center w-full p-8">
             <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl">
+                
+                <?php if (isset($_SESSION['flash_message'])): ?>
+                    <div class="mx-auto max-w-2xl mt-4 mb-2 p-4 text-white text-center font-semibold rounded-lg 
+                                <?= str_starts_with($_SESSION['flash_message'], '✅') ? 'bg-green-600' : 'bg-red-600' ?>">
+                        <?= $_SESSION['flash_message'] ?>
+                    </div>
+                    <?php unset($_SESSION['flash_message']); ?>
+                <?php endif; ?>
+
                 <form class="space-y-6" method="POST" action="../api/controller/aksi_edit_ulasan.php" enctype="multipart/form-data">
                     <input type="hidden" name="id_ulasan" value="<?= $data['id_rating_ulasan'] ?>">
+                    <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
 
                     <div>
                         <label for="rating" class="block text-sm font-medium text-gray-600">Rating</label>
@@ -101,7 +112,7 @@ $data = $result->fetch_assoc();
 
                     <div>
                         <label for="ulasan" class="block text-sm font-medium text-gray-600">Ulasan</label>
-                        <textarea id="ulasan" name="ulasan" class="w-full p-3 border border-gray-300 rounded-md mt-2" required><?= htmlspecialchars($data['ulasan']) ?></textarea>
+                        <textarea id="ulasan" name="ulasan" class="w-full p-3 border border-gray-300 rounded-md mt-2" required><?= htmlspecialchars($data['ulasan'], ENT_QUOTES, 'UTF-8') ?></textarea>
                     </div>
 
                     <label class="flex items-center space-x-2">

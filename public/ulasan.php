@@ -3,6 +3,11 @@ define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
 
+if (isset($_SESSION['flash_message'])) {
+    echo "<script>alert('" . $_SESSION['flash_message'] . "');</script>";
+    unset($_SESSION['flash_message']);
+}
+
 $ulasan_result = mysqli_query($conn, 
     "SELECT ru.id_rating_ulasan, ru.rating, ru.ulasan, ru.user_id_user, u.email 
     FROM rating_ulasan ru 
@@ -80,18 +85,15 @@ if ($is_logged_in) {
             <?php while ($row = mysqli_fetch_assoc($ulasan_result)): ?>
                 <div class="bg-white p-6 rounded-lg shadow-lg text-left">
                     <h3 class="text-xl font-bold text-red-600">
-                        <?= htmlspecialchars($row['email']) ?>
+                        <?= htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?>
                     </h3>
                     <div class="text-yellow-400 text-lg mt-2">
                         <div style="color: #ffc107;" class="text-lg mt-2">
-                            <?php
-                            $rating = (int)$row['rating'];
-                            echo str_repeat('★', $rating) . str_repeat('☆', 5 - $rating);
-                            ?>
-                        </div>    
+                            <?= str_repeat('★', (int)$row['rating']) . str_repeat('☆', 5 - (int)$row['rating']) ?>
+                        </div>
                     </div>
                     <p class="text-sm text-gray-700 mt-3">
-                        <?= htmlspecialchars($row['ulasan']) ?>
+                        <?= htmlspecialchars($row['ulasan'], ENT_QUOTES, 'UTF-8') ?>
                     </p>
                 </div>
             <?php endwhile; ?>
@@ -99,7 +101,7 @@ if ($is_logged_in) {
     </section>
 
     <?php if ($is_logged_in && $_SESSION['role'] === 'pengunjung' && $user_ulasan_id): ?>
-        <form action="form_edit_ulasan.php" method="POST" class="fixed bottom-6 right-10">
+        <form action="form_edit_ulasan.php" method="GET" class="fixed bottom-6 right-10">
             <input type="hidden" name="id" value="<?= $user_ulasan_id ?>">
             <button type="submit" class="bg-white text-red-600 p-4 rounded-full shadow-lg hover:scale-105 transition duration-300">
                 <span class="text-xl font-bold">+ Edit Ulasan</span>

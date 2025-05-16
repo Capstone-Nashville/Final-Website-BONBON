@@ -54,8 +54,8 @@ $is_logged_in = isset($_SESSION['id_user']);
                 <img src="images/owner.jpg" alt="Bonbon Logo" class="w-full h-auto object-cover">
             </div>
             <div class="w-2/3 text-left px-8">
-                <h1 class="text-4xl md:text-4xl font-bold mb-4">Bergabunglah Menjadi Franchisee Bonbon!</h1>
-                <p class="text-lg md:text-xl">BONBON hadir untuk memberikan pengalaman tak terlupakan melalui berbagai pilihan es krim, teh, dan kopi terbaik yang menggabungkan rasa manis, segar, dan nikmat dalam satu tempat. Bonbon menawarkan menu, mulai dari es krim klasik hingga varian kopi kekinian, semua disajikan dengan cita rasa yang telah disesuaikan dengan selera masyarakat Indonesia.</p>
+                <h1 class="text-4xl md:text-4xl font-bold mb-4">Bergabunglah Menjadi Franchisee BONBON!</h1>
+                <p class="text-lg md:text-xl">Rasakan peluang bisnis yang menjanjikan bersama BONBON — brand yang menghadirkan es krim, teh, dan kopi favorit dalam cita rasa manis, segar, dan nikmat yang disukai banyak orang. Dengan beragam pilihan menu dari es krim klasik hingga kopi kekinian yang telah disesuaikan dengan selera masyarakat Indonesia, BONBON siap menjadi destinasi favorit pelanggan Anda. Kini saatnya Anda ikut menjadi bagian dari perjalanan manis kami!</p>
             </div>
         </div>
     </section>
@@ -66,7 +66,7 @@ $is_logged_in = isset($_SESSION['id_user']);
     </div>
 
     <section id="keuntungan" class="bg-red-600 py-16 px-8 md:px-32">
-            <h2 class="text-3xl font-semibold text-center text-white mb-12">Keuntungan Menjadi Franchisee Bonbon</h2>
+            <h2 class="text-3xl font-semibold text-center text-white mb-12">Keuntungan Menjadi Franchisee BONBON</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-white shadow-lg rounded-lg p-6 text-center">
                     <div class="mb-4">
@@ -80,7 +80,7 @@ $is_logged_in = isset($_SESSION['id_user']);
                         <img src="images/consulting.png" alt="Keuntungan 2" class="w-32 h-32 mx-auto">
                     </div>
                     <h3 class="text-xl font-semibold text-red-600 mb-2">Konsultasi Gratis dan Pendampingan Bisnis</h3>
-                    <p class="text-sm text-gray-700">Tim Bonbon menyediakan konsultasi gratis yang bisa diakses kapan saja. Mulai dari strategi pemasaran, manajemen usaha, hingga troubleshooting operasional.</p>
+                    <p class="text-sm text-gray-700">Tim BONBON menyediakan konsultasi gratis yang bisa diakses kapan saja. Mulai dari strategi pemasaran, manajemen usaha, hingga troubleshooting operasional.</p>
                 </div>
                 <div class="bg-white shadow-lg rounded-lg p-6 text-center">
                     <div class="mb-4">

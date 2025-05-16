@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once __DIR__ . '/../api/config/csrf.php';
+
 if (isset($_SESSION['id_user'])) {
     if ($_SESSION['role'] === 'admin') {
         header("Location: dashboard.php");
@@ -41,6 +43,7 @@ if (isset($_SESSION['id_user'])) {
                 <h2 class="text-2xl font-bold text-red-600">Register</h2>
             </div>
             <form action="/bonbon/api/controller/aksi_register.php" method="POST" class="space-y-4">
+                <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-600">Nama Lengkap</label>
                     <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan nama lengkap anda">

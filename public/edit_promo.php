@@ -70,8 +70,8 @@ if (isset($_SESSION['flash_message'])) {
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12 px-40">
         <?php while ($row = mysqli_fetch_assoc($promo)): ?>
             <div class="bg-white shadow-lg rounded-xl p-4 flex flex-col items-center">
-                <a href="<?= htmlspecialchars($row['link_postingan']) ?>" target="_blank">
-                    <img src="images_promo/<?= htmlspecialchars($row['gambar_promo']) ?>" alt="Promo BONBON" class="w-full h-56 object-contain bg-white rounded-md mb-4 hover:opacity-80 transition duration-200">
+                <a href="<?= htmlspecialchars($row['link_postingan'], ENT_QUOTES, 'UTF-8') ?>" target="_blank">
+                    <img src="images_promo/<?= htmlspecialchars($row['gambar_promo'], ENT_QUOTES, 'UTF-8') ?>" alt="Promo BONBON" class="w-full h-56 object-contain bg-white rounded-md mb-4 hover:opacity-80 transition duration-200">
                 </a>
                 <div class="w-full flex justify-center">
                     <form action="/bonbon/api/controller/aksi_hapus_promo.php" method="POST" onsubmit="return confirm('Apakah kamu yakin ingin menghapus promosi ini?');">

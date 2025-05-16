@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
@@ -72,6 +73,7 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
                         <?php unset($_SESSION['flash_message']); ?>
                     <?php endif; ?>
                     <form class="space-y-6" method="POST" action="../api/controller/aksi_tambah_promo.php" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                         <div>
                             <label for="link_postingan" class="block text-sm font-medium text-gray-600">Link Postingan</label>
                             <input type="url" id="link_postingan" name="link_postingan" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan Link" required>

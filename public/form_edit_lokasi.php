@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
@@ -28,7 +29,6 @@ if (!$lokasi_outlet) {
     exit;
 }
 
-// Pisahkan jam buka dan jam tutup
 [$jam_buka, $jam_tutup] = explode(' - ', $lokasi_outlet['jam_operasional']);
 ?>
 
@@ -90,17 +90,18 @@ if (!$lokasi_outlet) {
                     <?php endif; ?>
                     
                     <form class="space-y-6" method="POST" action="../api/controller/aksi_edit_lokasi.php" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                         <input type="hidden" name="id_lokasi_outlet" value="<?= $lokasi_outlet['id_lokasi_outlet'] ?>">
                         <input type="hidden" name="gambar_lama" value="<?= $lokasi_outlet['gambar_outlet'] ?>">
 
                         <div>
                             <label for="nama_cabang" class="block text-sm font-medium text-gray-600">Nama Cabang</label>
-                            <input type="text" id="nama_cabang" name="nama_cabang" value="<?= htmlspecialchars($lokasi_outlet['nama_outlet']) ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            <input type="text" id="nama_cabang" name="nama_cabang" value="<?= htmlspecialchars($lokasi_outlet['nama_outlet'], ENT_QUOTES, 'UTF-8') ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
                         </div>
 
                         <div>
                             <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat</label>
-                            <input type="text" id="alamat" name="alamat" value="<?= htmlspecialchars($lokasi_outlet['alamat']) ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            <input type="text" id="alamat" name="alamat" value="<?= htmlspecialchars($lokasi_outlet['alamat'], ENT_QUOTES, 'UTF-8') ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
                         </div>
 
                         <div class="flex space-x-4">
@@ -115,7 +116,7 @@ if (!$lokasi_outlet) {
                         </div>
                         <div>
                             <label for="link_gmaps" class="block text-sm font-medium text-gray-600">Link Google Maps</label>
-                            <input type="url" id="link_gmaps" name="link_gmaps" value="<?= htmlspecialchars($lokasi_outlet['link_gmaps']) ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            <input type="url" id="link_gmaps" name="link_gmaps" value="<?= htmlspecialchars($lokasi_outlet['link_gmaps'], ENT_QUOTES, 'UTF-8') ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
                         </div>
                         <div>
                             <label for="gambar" class="block text-sm font-medium text-gray-600">Ganti Gambar</label>

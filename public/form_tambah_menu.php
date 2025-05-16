@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
@@ -70,6 +71,7 @@ if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
                     <?php endif; ?>
 
                     <form class="space-y-6" method="POST" action="../api/controller/aksi_tambah_menu.php" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                         <div>
                             <label for="nama_menu" class="block text-sm font-medium text-gray-600">Nama Menu</label>
                             <input type="text" id="nama_menu" name="nama_menu" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan Nama Menu" required>

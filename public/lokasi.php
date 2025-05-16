@@ -61,7 +61,7 @@ $is_logged_in = isset($_SESSION['id_user']);
     <!-- Lokasi Section -->
     <section class="py-8 px-4 text-center text-red-600 bg-white">
         <h2 class="text-4xl font-bold  mb-4">Lokasi</h2>
-        <p class="text-xl mb-8 px-60 py-4">Kunjungi Lokasi Bonbon Ice Cream dan Jadikan Hari Anda Lebih Manis Bersama Kami. Tempat Terbaik untuk Momen Terlezat!</p>
+        <p class="text-xl mb-8 px-60 py-4">Kunjungi Lokasi BONBON Ice Cream dan Jadikan Hari Anda Lebih Manis Bersama Kami. Tempat Terbaik untuk Momen Terlezat!</p>
     </section>
 
     <section class="bg-red-600">

@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if (!isset($_SESSION['id_user']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('❌ Akses hanya untuk admin'); window.location.href='beranda.php';</script>";
@@ -95,12 +96,13 @@ if (!$menu) {
                     <?php endif; ?>
 
                     <form class="space-y-6" method="POST" action="../api/controller/aksi_edit_menu.php" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                         <input type="hidden" name="id_menu" value="<?= $menu['id_menu'] ?>">
                         <input type="hidden" name="gambar_lama" value="<?= $menu['gambar_produk'] ?>">
 
                         <div>
                             <label for="nama_menu" class="block text-sm font-medium text-gray-600">Nama Menu</label>
-                            <input type="text" id="nama_menu" name="nama_menu" value="<?= htmlspecialchars($menu['nama_produk']) ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
+                            <input type="text" id="nama_menu" name="nama_menu" value="<?= htmlspecialchars($menu['nama_produk'], ENT_QUOTES, 'UTF-8') ?>" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
                         </div>
 
                         <div>

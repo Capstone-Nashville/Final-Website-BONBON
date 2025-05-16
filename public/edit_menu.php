@@ -127,9 +127,9 @@ if (isset($_SESSION['flash_message'])) {
                 <?php else: ?>
                     <?php foreach ($menus as $menu): ?>
                         <div class="bg-white rounded-lg overflow-hidden shadow-lg p-6 transform transition duration-300 hover:scale-105">
-                            <img src="images_menu/<?= htmlspecialchars($menu['gambar_produk']) ?>" alt="<?= htmlspecialchars($menu['nama_produk']) ?>" class="w-36 h-48 object-cover mx-auto">
+                            <img src="images_menu/<?= htmlspecialchars($menu['gambar_produk'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($menu['nama_produk'], ENT_QUOTES, 'UTF-8') ?>" class="w-36 h-48 object-cover mx-auto">
                             <div class="text-left mt-4">
-                                <p class="font-semibold text-xl text-black"><?= htmlspecialchars($menu['nama_produk']) ?></p>
+                                <p class="font-semibold text-xl text-black"><?= htmlspecialchars($menu['nama_produk'], ENT_QUOTES, 'UTF-8') ?></p>
                                 <p class="text-red-600 font-bold text-base mt-2 border-2 border-red-600 rounded-full inline-block py-1 px-3">
                                     Rp <?= number_format($menu['harga'], 0, ',', '.') ?>
                                 </p>

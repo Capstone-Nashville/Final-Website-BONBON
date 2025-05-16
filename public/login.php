@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../api/config/csrf.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +38,7 @@ session_start();
                 </div>
 
                 <form class="space-y-4" method="POST" action="/bonbon/api/controller/aksi_login.php">
+                    <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
                         <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-md mt-2" placeholder="Masukkan email anda" required>

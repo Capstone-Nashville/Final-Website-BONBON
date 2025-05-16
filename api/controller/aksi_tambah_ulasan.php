@@ -2,6 +2,13 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/koneksi.php';
+require_once __DIR__ . '/../config/csrf.php';
+
+if (!verify_csrf_token($_POST['csrf_token_form'] ?? '')) {
+    $_SESSION['flash_message'] = '⛔ Permintaan tidak valid (token).';
+    header("Location: ../../public/login.php");
+    exit;
+}
 
 if ($_SESSION['role'] !== 'pengunjung') {
     echo "<script>alert('❌ Hanya pengunjung yang bisa mengulas'); window.location.href='ulasan.php';</script>";
@@ -18,11 +25,10 @@ if (!$rating || !$ulasan) {
 }
 
 if (str_word_count($ulasan) > 100) {
-    $_SESSION['flash_message'] = '❌ Alamat maksimal terdiri dari 100 kata';
+    $_SESSION['flash_message'] = '❌ Ulasan maksimal terdiri dari 100 kata';
     header("Location: ../../public/form_tambah_ulasan.php");
     exit;
 }
-
 
 if (basename(__FILE__) === 'aksi_tambah_ulasan.php') {
     $cek = $conn->prepare("SELECT * FROM rating_ulasan WHERE user_id_user = ?");

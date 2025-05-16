@@ -2,6 +2,13 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../config/auth.php';
 require_once __DIR__ . '/../config/koneksi.php';
+require_once __DIR__ . '/../config/csrf.php';
+
+if (!verify_csrf_token($_POST['csrf_token_form'] ?? '')) {
+    $_SESSION['flash_message'] = '⛔ Permintaan tidak valid (token).';
+    header("Location: ../../public/login.php");
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_lokasi_outlet = $_POST['id_lokasi_outlet'] ?? null;

@@ -2,6 +2,13 @@
 session_start();
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../config/koneksi.php';
+require_once __DIR__ . '/../config/csrf.php';
+
+if (!verify_csrf_token($_POST['csrf_token_form'] ?? '')) {
+    $_SESSION['flash_message'] = '⛔ Permintaan tidak valid (token).';
+    header("Location: ../../public/login.php");
+    exit;
+}
 
 $nama_lengkap = trim($_POST['name'] ?? '');
 $email = trim($_POST['email'] ?? '');
@@ -14,6 +21,19 @@ if (empty($nama_lengkap) || empty($email) || empty($password) || empty($konfirma
     header("Location: ../../public/register.php");
     exit;
 }
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['flash_message'] = 'Email tidak valid';
+    header("Location: ../../public/register.php");
+    exit;
+}
+
+if (strlen($nama_lengkap) > 100) {
+    $_SESSION['flash_message'] = 'Nama terlalu panjang';
+    header("Location: ../../public/register.php");
+    exit;
+}
+
 
 if (strlen($password) < 8) {
     $_SESSION['flash_message'] = '⚠️ Password minimal harus 8 karakter';

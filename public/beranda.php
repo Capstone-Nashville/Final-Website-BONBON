@@ -5,6 +5,11 @@ require_once __DIR__ . '/../api/config/koneksi.php';
 
 $is_logged_in = isset($_SESSION['id_user']);
 
+if (isset($_SESSION['flash_message'])) {
+    echo "<script>alert('" . $_SESSION['flash_message'] . "');</script>";
+    unset($_SESSION['flash_message']);
+}
+
 $promo = mysqli_query($conn, "SELECT * FROM promo");
 
 $ulasan_result = mysqli_query($conn, 
@@ -110,8 +115,8 @@ if ($is_logged_in) {
                 <div class="flex transition-transform duration-500" id="carousel">
                     <?php while ($row = mysqli_fetch_assoc($promo)): ?>
                     <div class="flex-shrink-0 w-full flex justify-center">
-                    <a href="<?= htmlspecialchars($row['link_postingan']) ?>" target="_blank">
-                        <img src="images_promo/<?= htmlspecialchars($row['gambar_promo']) ?>" alt="Promo" class="rounded-lg h-60 w-60 object-contain shadow-xl">
+                    <a href="<?= htmlspecialchars($row['link_postingan'], ENT_QUOTES, 'UTF-8') ?>" target="_blank">
+                        <img src="images_promo/<?= htmlspecialchars($row['gambar_promo'], ENT_QUOTES, 'UTF-8') ?>" alt="Promo" class="rounded-lg h-60 w-60 object-contain shadow-xl">
                     </a>
                     </div>
                     <?php endwhile; ?>
@@ -201,7 +206,7 @@ if ($is_logged_in) {
                 <?php while ($row = mysqli_fetch_assoc($ulasan_result)): ?>
                     <a href="ulasan.php" class="w-[300px] bg-white p-6 rounded-lg shadow-lg text-left shrink-0">
                         <h3 class="text-xl font-bold text-red-600">
-                            <?= htmlspecialchars($row['email']) ?>
+                            <?= htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8') ?>
                         </h3>
                         <div style="color: #ffc107;" class="text-lg mt-2">
                             <?php
@@ -210,7 +215,7 @@ if ($is_logged_in) {
                             ?>
                         </div>
                         <p class="text-sm text-gray-700 mt-3">
-                            <?= htmlspecialchars($row['ulasan']) ?>
+                            <?= htmlspecialchars($row['ulasan'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
                     </a>
                 <?php endwhile; ?>
@@ -223,20 +228,6 @@ if ($is_logged_in) {
             </button>
         </div>
     </section>
-
-    <!-- <?php if ($is_logged_in && $_SESSION['role'] === 'pengunjung' && $user_ulasan_id): ?>
-        <a href="form_edit_ulasan.php?id=<?= $user_ulasan_id ?>" class="fixed bottom-6 right-10 bg-white text-red-600 p-4 rounded-full shadow-lg hover:scale-105 transition duration-300">
-            <span class="text-xl font-bold">+ Edit Ulasan</span>
-        </a>
-    <?php elseif ($is_logged_in && $_SESSION['role'] === 'pengunjung'): ?>
-        <a href="form_tambah_ulasan.php" class="fixed bottom-6 right-10 bg-white text-red-600 p-4 rounded-full shadow-lg hover:scale-105 transition duration-300">
-            <span class="text-xl font-bold">+ Tambah Ulasan</span>
-        </a>
-    <?php else: ?>
-        <a href="form_tambah_ulasan.php" class="fixed bottom-6 right-10 bg-white text-red-600 p-4 rounded-full shadow-lg hover:scale-105 transition duration-300">
-            <span class="text-xl font-bold">+ Tambah Ulasan</span>
-        </a>
-    <?php endif; ?> -->
 
     <?php if ($is_logged_in && $_SESSION['role'] === 'pengunjung' && $user_ulasan_id): ?>
         <form action="form_edit_ulasan.php" method="POST" class="fixed bottom-6 right-10">

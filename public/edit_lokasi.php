@@ -66,12 +66,12 @@ if (isset($_SESSION['flash_message'])) {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-12 px-40">
             <?php while ($row = mysqli_fetch_assoc($lokasi)): ?>
             <div class="location-card bg-white rounded-2xl overflow-hidden shadow-2xl p-4 block transform transition duration-300 hover:scale-105">
-                <img src="images_lokasi/<?= htmlspecialchars($row['gambar_outlet']) ?>" alt="<?= htmlspecialchars($row['nama_outlet']) ?>" class="w-full h-48 object-cover">
+                <img src="images_lokasi/<?= htmlspecialchars($row['gambar_outlet'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($row['nama_outlet'], ENT_QUOTES, 'UTF-8') ?>" class="w-full h-48 object-cover">
                 <div class="p-4 text-left">
                     <h3 class="font-bold text-2xl text-red-600"><?= htmlspecialchars(strtoupper($row['nama_outlet'])) ?></h3>
-                    <p class="text-gray-700 text-sm"><?= htmlspecialchars($row['alamat']) ?></p>
-                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 <?= htmlspecialchars($row['jam_operasional']) ?></p>
-                    <a href="<?= htmlspecialchars($row['link_gmaps']) ?>" target="_blank" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
+                    <p class="text-gray-700 text-sm"><?= htmlspecialchars($row['alamat'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <p class="text-lg font-semibold text-gray-800 mt-2">🕒 <?= htmlspecialchars($row['jam_operasional'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <a href="<?= htmlspecialchars($row['link_gmaps'], ENT_QUOTES, 'UTF-8') ?>" target="_blank" target="_blank" class="inline-block mt-4 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-800">Lihat Lokasi</a>
                     <div class="mt-4 flex justify-center gap-2">
                     <a href="form_edit_lokasi.php?id=<?= $row['id_lokasi_outlet'] ?>" class="bg-yellow-400 text-white py-2 px-4 rounded-md hover:scale-105">Edit</a>
                         <form action="/bonbon/api/controller/aksi_hapus_lokasi.php" method="POST" onsubmit="return confirm('Apakah kamu yakin ingin menghapus outlet ini?');">

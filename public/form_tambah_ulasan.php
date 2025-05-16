@@ -2,6 +2,7 @@
 define('ACCESS_ALLOWED', true);
 require_once __DIR__ . '/../api/config/auth.php';
 require_once __DIR__ . '/../api/config/koneksi.php';
+require_once __DIR__ . '/../api/config/csrf.php';
 
 if ($_SESSION['role'] !== 'pengunjung') {
     echo "<script>alert('❌ Admin dilarang membuat ulasan'); window.location.href='beranda.php';</script>";
@@ -68,7 +69,17 @@ $is_logged_in = isset($_SESSION['id_user']);
     <section class="bg-red-600 justify-center w-full py-10">
         <div class="flex justify-center items-center w-full p-8">
             <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl">
+                
+                <?php if (isset($_SESSION['flash_message'])): ?>
+                    <div class="mx-auto max-w-2xl mt-4 mb-2 p-4 text-white text-center font-semibold rounded-lg 
+                                <?= str_starts_with($_SESSION['flash_message'], '✅') ? 'bg-green-600' : 'bg-red-600' ?>">
+                        <?= $_SESSION['flash_message'] ?>
+                    </div>
+                    <?php unset($_SESSION['flash_message']); ?>
+                <?php endif; ?>
+
                 <form class="space-y-6" method="POST" action="../api/controller/aksi_tambah_ulasan.php" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token_form" value="<?= $_SESSION['csrf_token'] ?>">
                     <div>
                         <label for="rating" class="block text-sm font-medium text-gray-600">Rating</label>
                         <select name="rating" id="rating" class="w-full p-3 border border-gray-300 rounded-md mt-2" required>
